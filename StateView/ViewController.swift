@@ -7,19 +7,39 @@
 //
 
 import UIKit
+import SnapKit
+import Dwifft
 
 class ViewController: UIViewController {
-
+    
+    var stateView = StateView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        let rootView = HomeView()
+        view.addSubview(rootView)
+        rootView.snp_makeConstraints { make in
+            make.size.equalTo(300)
+            make.center.equalTo(self.view)
+        }
+        rootView.startRender()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
+    
 }
 
+class HomeView: StateView {
+    
+    override func render() {
+        shadow.place(LabelView.self, key: "label") { make in
+            make.size.equalTo(200)
+            make.center.equalTo(self)
+        }
+        setProp(forViewKey: "label", toValue: "Hello World", forKey: "text")
+        backgroundColor = UIColor.lightGrayColor()
+        
+    }
+    
+    
+    
+}
