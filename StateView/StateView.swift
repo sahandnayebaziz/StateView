@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 // similar to component
 class StateView: UIView {
@@ -38,14 +39,14 @@ class StateView: UIView {
     
     func startRender() {
         render()
-        shadow.didPlaceAll(props)
+        shadow.didPlaceAll(resolveProps(self.props))
     }
     
     func render() {
         
     }
     
-    private func renderDeep() {
+    private func resolveProps(props: [StateViewProp]) -> [StateViewProp] {
         var propsToUse: [StateViewProp] = []
 
         for prop in props {
@@ -56,7 +57,11 @@ class StateView: UIView {
                 propsToUse.append(prop)
             }
         }
-        shadow.didPlaceAll(propsToUse)
+        return propsToUse
+    }
+    
+    func place(elementType: StateView.Type, key: String, constraints constraintsMaker: ((make: ConstraintMaker) -> Void)) {
+        shadow.place(elementType, key: key, constraints: constraintsMaker)
     }
     
     func setProp(forViewKey viewKey: String, toValue value: AnyObject, forKey key: String) {
@@ -80,33 +85,5 @@ class StateView: UIView {
         }
     }
 
-}
-
-class LabelView: StateView {
-    var label: UILabel?
-    
-    override func render() {
-        if label == nil {
-            let newLabel = UILabel()
-            newLabel.textAlignment = .Center
-            addSubview(newLabel)
-            newLabel.snp_makeConstraints { make in
-                make.size.equalTo(self)
-                make.center.equalTo(self)
-            }
-            label = newLabel
-        }
-        
-        if let label = label {
-            if let text = getProp(forKey: "text") as? String {
-                label.text = text
-            }
-        }
-        
-    }
-    
-    override func getInitialState() -> [String : AnyObject] {
-        return ["text": "Hello Sahand!"]
-    }
 }
 

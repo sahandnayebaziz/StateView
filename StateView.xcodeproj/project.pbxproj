@@ -16,6 +16,8 @@
 		D8443D321CB025600043AA98 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8443D301CB025600043AA98 /* LaunchScreen.storyboard */; };
 		D8443D3D1CB025610043AA98 /* StateViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8443D3C1CB025610043AA98 /* StateViewTests.swift */; };
 		D8443D481CB027720043AA98 /* Protocls.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8443D471CB027720043AA98 /* Protocls.swift */; };
+		D8F7F2471CB1A07000BDDAD9 /* FieldLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F7F2461CB1A07000BDDAD9 /* FieldLabelView.swift */; };
+		D8F7F24B1CB1A0F900BDDAD9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F7F24A1CB1A0F900BDDAD9 /* HomeView.swift */; };
 		EC80C09F4C2AF2596E91FFC2 /* Pods_StateViewTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0041687E5992B49580004D5C /* Pods_StateViewTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +49,8 @@
 		D8443D3C1CB025610043AA98 /* StateViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateViewTests.swift; sourceTree = "<group>"; };
 		D8443D3E1CB025610043AA98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8443D471CB027720043AA98 /* Protocls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocls.swift; sourceTree = "<group>"; };
+		D8F7F2461CB1A07000BDDAD9 /* FieldLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldLabelView.swift; sourceTree = "<group>"; };
+		D8F7F24A1CB1A0F900BDDAD9 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		DF5016B8378D8E1232B1A4C1 /* Pods-StateViewTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StateViewTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StateViewTests/Pods-StateViewTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,10 +97,10 @@
 		D8443D261CB025600043AA98 /* StateView */ = {
 			isa = PBXGroup;
 			children = (
+				D8F7F2491CB1A0D800BDDAD9 /* Library */,
+				D8F7F2481CB1A0CE00BDDAD9 /* Views */,
 				D8443D271CB025600043AA98 /* AppDelegate.swift */,
 				D8443D291CB025600043AA98 /* ViewController.swift */,
-				D8276DEE1CB10E1100EF4B9F /* StateView.swift */,
-				D8443D471CB027720043AA98 /* Protocls.swift */,
 				D8443D2B1CB025600043AA98 /* Main.storyboard */,
 				D8443D2E1CB025600043AA98 /* Assets.xcassets */,
 				D8443D301CB025600043AA98 /* LaunchScreen.storyboard */,
@@ -112,6 +116,24 @@
 				D8443D3E1CB025610043AA98 /* Info.plist */,
 			);
 			path = StateViewTests;
+			sourceTree = "<group>";
+		};
+		D8F7F2481CB1A0CE00BDDAD9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D8F7F2461CB1A07000BDDAD9 /* FieldLabelView.swift */,
+				D8F7F24A1CB1A0F900BDDAD9 /* HomeView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		D8F7F2491CB1A0D800BDDAD9 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				D8276DEE1CB10E1100EF4B9F /* StateView.swift */,
+				D8443D471CB027720043AA98 /* Protocls.swift */,
+			);
+			name = Library;
 			sourceTree = "<group>";
 		};
 		E5C758BA916F4B600E9032BC /* Frameworks */ = {
@@ -337,7 +359,9 @@
 				D8276DEF1CB10E1100EF4B9F /* StateView.swift in Sources */,
 				D8443D2A1CB025600043AA98 /* ViewController.swift in Sources */,
 				D8443D281CB025600043AA98 /* AppDelegate.swift in Sources */,
+				D8F7F24B1CB1A0F900BDDAD9 /* HomeView.swift in Sources */,
 				D8443D481CB027720043AA98 /* Protocls.swift in Sources */,
+				D8F7F2471CB1A07000BDDAD9 /* FieldLabelView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

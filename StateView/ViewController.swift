@@ -24,22 +24,8 @@ class ViewController: UIViewController {
             make.center.equalTo(self.view)
         }
         rootView.startRender()
-    }
-    
-}
-
-class HomeView: StateView {
-    
-    override func render() {
-        shadow.place(LabelView.self, key: "label") { make in
-            make.size.equalTo(200)
-            make.center.equalTo(self)
-        }
-        setProp(forViewKey: "label", toValue: "Hello World", forKey: "text")
-        backgroundColor = UIColor.lightGrayColor()
+        
         
     }
-    
-    
     
 }
