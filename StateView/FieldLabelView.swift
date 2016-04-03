@@ -39,17 +39,24 @@ class FieldLabelView: StateView {
                 make.centerX.equalTo(self)
             }
             textField = newTextField
-            textField?.placeholder = getProp(forKey: "placeholder") as? String
+            textField?.placeholder = prop(withValueForKey: "placeholder") as? String
             textField!.addTarget(self, action: #selector(FieldLabelView.didReceiveText(_:)), forControlEvents: .EditingChanged)
             newTextField.backgroundColor = UIColor.cyanColor()
         }
         
         if let label = label {
-            label.text = self.state["text"] as? String
+            label.text = prop(withValueForKey: "name") as! String
+        }
+        
+        if let textField = textField {
+            textField.text = prop(withValueForKey: "name") as! String
         }
     }
     
     func didReceiveText(sender: UITextField) {
-        self.state["text"] = sender.text!
+        if let propDidReceiveText = prop(withFunctionForKey: "didReceiveText") {
+            let values = ["text": sender.text!]
+            propDidReceiveText(values)
+        }
     }
 }

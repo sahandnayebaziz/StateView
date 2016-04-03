@@ -11,18 +11,34 @@ import UIKit
 class HomeView: StateView {
     
     override func getInitialState() -> [String : AnyObject] {
-        return ["placeholder":"Is this working?"]
+        return [
+            "placeholder":"Is this working?",
+            "nextButtonEnabled": false,
+            "name": ""
+        ]
     }
     
     override func render() {
-//        setProp(forViewKey: "label", toValue: "Type in me!", forKey: "placeholder")
-        setProp(forViewKey: "label", toStateKey: "placeholder", forKey: "placeholder")
+        backgroundColor = UIColor.lightGrayColor()
+        
         place(FieldLabelView.self, key: "label") { make in
             make.size.equalTo(self)
             make.center.equalTo(self)
         }
-        backgroundColor = UIColor.lightGrayColor()
+        setProp(forViewKey: "label", toStateKey: "placeholder", forKey: "placeholder")
+        setProp(forViewKey: "label", toValue: self.state["name"] as! String , forKey: "name")
+        setProp(forViewKey: "label", forKey: "didReceiveText") { values in
+            if let text = values["text"] as? String {
+                self.state["name"] = text
+                self.state["nextButtonEnabled"] = text.characters.count > 0
+            }
+        }
+        place(NextButton.self, key: "nextButton") { make in
+            make.width.equalTo(self)
+            make.height.equalTo(44)
+            make.bottom.equalTo(self)
+            make.centerX.equalTo(self)
+        }
+        setProp(forViewKey: "nextButton", toStateKey: "nextButtonEnabled", forKey: "enabled")
     }
-    
-
 }

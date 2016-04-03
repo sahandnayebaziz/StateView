@@ -60,8 +60,10 @@ class StateView: UIView {
         return propsToUse
     }
     
-    func place(elementType: StateView.Type, key: String, constraints constraintsMaker: ((make: ConstraintMaker) -> Void)) {
-        shadow.place(elementType, key: key, constraints: constraintsMaker)
+    func place(elementType: StateView.Type, key: String, constraints constraintsMaker: ((make: ConstraintMaker) -> Void)) -> ShadowViewElement {
+        let element = ShadowViewElement(key: key, elementType: elementType, constraints: constraintsMaker)
+        shadow.place(element)
+        return element
     }
     
     func setProp(forViewKey viewKey: String, toValue value: AnyObject, forKey key: String) {
@@ -75,15 +77,51 @@ class StateView: UIView {
         
     }
     
-    func getProp(forKey key: String) -> AnyObject? {
-        let possibleProp = props.filter { $0.key == key }
-        
-        if possibleProp.isEmpty {
-            return nil
-        } else {
-            return possibleProp.first!.value
-        }
+    func setProp(forViewKey viewKey: String, forKey key: String, toFunction function: (([String: AnyObject]->Void))) {
+        props = props.filter { $0.key != key && $0.viewKey != key }
+        props.append(StateViewPropWithFunction(viewKey: viewKey, key: key, function: function))
     }
-
+    
+//    func getProp(forKey key: String) -> AnyObject? {
+//        let possibleProp = props.filter { $0.key == key }
+//        
+//        if possibleProp.isEmpty {
+//            return nil
+//        } else {
+//            return possibleProp.first!.value
+//        }
+//    }
+    
+    func prop(withValueForKey key: String) -> AnyObject? {
+        let possibleProp = props.filter { prop in
+            guard let _ = prop as? StateViewPropWithValue else {
+                return false
+            }
+            
+            return prop.key == key
+        }
+        
+        guard let prop = possibleProp.first as? StateViewPropWithValue else {
+            return nil
+        }
+        
+        return prop.value
+    }
+    
+    func prop(withFunctionForKey key: String) -> (([String: AnyObject] ->Void))? {
+        let possibleProp = props.filter { prop in
+            guard let _ = prop as? StateViewPropWithFunction else {
+                return false
+            }
+            
+            return prop.key == key
+        }
+        
+        guard let prop = possibleProp.first as? StateViewPropWithFunction else {
+            return nil
+        }
+        
+        return prop.function
+    }
 }
 
