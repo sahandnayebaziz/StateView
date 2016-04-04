@@ -38,6 +38,7 @@ class StateView: UIView {
     }
     
     func startRender() {
+        props.removeAll()
         render()
         shadow.didPlaceAll(resolveProps(self.props))
     }

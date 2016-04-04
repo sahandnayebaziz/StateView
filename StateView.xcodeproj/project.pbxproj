@@ -15,7 +15,7 @@
 		D8443D2F1CB025600043AA98 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8443D2E1CB025600043AA98 /* Assets.xcassets */; };
 		D8443D321CB025600043AA98 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8443D301CB025600043AA98 /* LaunchScreen.storyboard */; };
 		D8443D3D1CB025610043AA98 /* StateViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8443D3C1CB025610043AA98 /* StateViewTests.swift */; };
-		D8443D481CB027720043AA98 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8443D471CB027720043AA98 /* Protocols.swift */; };
+		D8443D481CB027720043AA98 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8443D471CB027720043AA98 /* ShadowView.swift */; };
 		D89605521CB1AC1300F2E3CA /* NextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89605511CB1AC1300F2E3CA /* NextButton.swift */; };
 		D89605551CB1AE3300F2E3CA /* ShadowViewElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89605541CB1AE3300F2E3CA /* ShadowViewElement.swift */; };
 		D8F7F2471CB1A07000BDDAD9 /* FieldLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F7F2461CB1A07000BDDAD9 /* FieldLabelView.swift */; };
@@ -50,7 +50,7 @@
 		D8443D381CB025610043AA98 /* StateViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StateViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8443D3C1CB025610043AA98 /* StateViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateViewTests.swift; sourceTree = "<group>"; };
 		D8443D3E1CB025610043AA98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D8443D471CB027720043AA98 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		D8443D471CB027720043AA98 /* ShadowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		D89605511CB1AC1300F2E3CA /* NextButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextButton.swift; sourceTree = "<group>"; };
 		D89605541CB1AE3300F2E3CA /* ShadowViewElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowViewElement.swift; sourceTree = "<group>"; };
 		D8F7F2461CB1A07000BDDAD9 /* FieldLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldLabelView.swift; sourceTree = "<group>"; };
@@ -125,7 +125,7 @@
 		D89605531CB1AE2700F2E3CA /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				D8443D471CB027720043AA98 /* Protocols.swift */,
+				D8443D471CB027720043AA98 /* ShadowView.swift */,
 				D89605541CB1AE3300F2E3CA /* ShadowViewElement.swift */,
 			);
 			name = Protocols;
@@ -374,7 +374,7 @@
 				D8443D2A1CB025600043AA98 /* ViewController.swift in Sources */,
 				D8443D281CB025600043AA98 /* AppDelegate.swift in Sources */,
 				D8F7F24B1CB1A0F900BDDAD9 /* HomeView.swift in Sources */,
-				D8443D481CB027720043AA98 /* Protocols.swift in Sources */,
+				D8443D481CB027720043AA98 /* ShadowView.swift in Sources */,
 				D89605551CB1AE3300F2E3CA /* ShadowViewElement.swift in Sources */,
 				D89605521CB1AC1300F2E3CA /* NextButton.swift in Sources */,
 				D8F7F2471CB1A07000BDDAD9 /* FieldLabelView.swift in Sources */,

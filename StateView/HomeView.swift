@@ -30,15 +30,26 @@ class HomeView: StateView {
         setProp(forViewKey: "label", forKey: "didReceiveText") { values in
             if let text = values["text"] as? String {
                 self.state["name"] = text
-                self.state["nextButtonEnabled"] = text.characters.count > 0
+                
+                if text.characters.count > 1 {
+                    self.state["nextButtonEnabled"] = true
+                } else if text.characters.count == 1 {
+                    self.state["nextButtonEnabled"] = false
+                } else {
+                    self.state["nextButtonEnabled"] = nil
+                }
+                
             }
         }
-        place(NextButton.self, key: "nextButton") { make in
-            make.width.equalTo(self)
-            make.height.equalTo(44)
-            make.bottom.equalTo(self)
-            make.centerX.equalTo(self)
+        
+        if self.state["nextButtonEnabled"] != nil {
+            place(NextButton.self, key: "nextButton") { make in
+                make.width.equalTo(self)
+                make.height.equalTo(44)
+                make.bottom.equalTo(self)
+                make.centerX.equalTo(self)
+            }
+            setProp(forViewKey: "nextButton", toStateKey: "nextButtonEnabled", forKey: "enabled")
         }
-        setProp(forViewKey: "nextButton", toStateKey: "nextButtonEnabled", forKey: "enabled")
     }
 }
