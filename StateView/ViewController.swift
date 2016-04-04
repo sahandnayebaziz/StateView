@@ -23,7 +23,7 @@ class ViewController: UIViewController {
             make.size.equalTo(300)
             make.center.equalTo(self.view)
         }
-        rootView.startRender()
+        rootView.renderDeep()
         
         
     }

@@ -45,11 +45,24 @@ class FieldLabelView: StateView {
         }
         
         if let label = label {
-            label.text = prop(withValueForKey: "name") as! String
+            label.text = prop(withValueForKey: "name") as? String
         }
         
         if let textField = textField {
-            textField.text = prop(withValueForKey: "name") as! String
+            textField.text = prop(withValueForKey: "name") as? String
+        }
+        
+        let nameToUse = prop(withValueForKey: "name") as? String
+        if nameToUse != nil {
+            if (nameToUse == "sahand") {
+                place(Label.self, key: "sameLabel") { make in
+                    make.width.equalTo(self)
+                    make.top.equalTo(self.textField!.snp_bottom)
+                    make.height.equalTo(50)
+                    make.centerX.equalTo(self)
+                }
+                setProp(forViewKey: "sameLabel", toValue: "They are the same!", forKey: "text")
+            }
         }
     }
     

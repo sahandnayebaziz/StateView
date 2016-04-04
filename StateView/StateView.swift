@@ -15,7 +15,8 @@ class StateView: UIView {
     var props: [StateViewProp] = []
     var state: [String: AnyObject] = [:] {
         didSet {
-            startRender()
+            props.removeAll()
+            renderDeep()
         }
     }
     
@@ -33,12 +34,7 @@ class StateView: UIView {
         return [:]
     }
     
-    func renderWithProps(props: [StateViewProp]) {
-        
-    }
-    
-    func startRender() {
-        props.removeAll()
+    func renderDeep() {
         render()
         shadow.didPlaceAll(resolveProps(self.props))
     }
@@ -82,16 +78,6 @@ class StateView: UIView {
         props = props.filter { $0.key != key && $0.viewKey != key }
         props.append(StateViewPropWithFunction(viewKey: viewKey, key: key, function: function))
     }
-    
-//    func getProp(forKey key: String) -> AnyObject? {
-//        let possibleProp = props.filter { $0.key == key }
-//        
-//        if possibleProp.isEmpty {
-//            return nil
-//        } else {
-//            return possibleProp.first!.value
-//        }
-//    }
     
     func prop(withValueForKey key: String) -> AnyObject? {
         let possibleProp = props.filter { prop in

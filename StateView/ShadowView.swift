@@ -65,14 +65,14 @@ class ShadowView: UIView {
         }
     }
 
-    func renderViewsWithProps(props: [StateViewProp]) {
+    private func renderViewsWithProps(props: [StateViewProp]) {
         for viewElement in views {
             let propsToUse = props.filter { $0.viewKey == viewElement.key }
             viewElement.setProps(propsToUse)
             
             if let viewHash = viewElement.viewHash, let viewForHash = renderedViews[viewHash] {
                 viewForHash.props = propsToUse
-                viewForHash.render()
+                viewForHash.renderDeep()
             } else {
                 fatalError("Any recycled viewElement must keep a viewHash for it's corresponding view")
             }
