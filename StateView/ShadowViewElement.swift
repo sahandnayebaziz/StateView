@@ -16,12 +16,26 @@ class ShadowViewElement: Equatable {
     var constraints: ((make: ConstraintMaker) -> Void)
     var props: [StateViewProp] = []
     var viewHash: String? = nil
+    var containingView: StateView
     
-    init(key: String, elementType: StateView.Type, constraints: ((make: ConstraintMaker) -> Void)) {
+    init(key: String, elementType: StateView.Type, constraints: ((make: ConstraintMaker) -> Void), containingView: StateView) {
         self.key = key
         self.elementType = elementType
-        props = []
         self.constraints = constraints
+        self.containingView = containingView
+        props = []
+    }
+    
+    func prop(forKey key: String, is value: AnyObject) {
+        containingView.setProp(self, toValue: value, forKey: key)
+    }
+    
+    func prop(forKey key: String, isLinkedToKeyInState stateKey: String) {
+        containingView.setProp(self, toStateKey: stateKey, forKey: key)
+    }
+    
+    func setValue(toFunction: ([String:AnyObject]->Void), forKey: String) {
+        containingView.setProp(self, forKey: forKey, toFunction: toFunction)
     }
     
     func setProps(props: [StateViewProp]) {

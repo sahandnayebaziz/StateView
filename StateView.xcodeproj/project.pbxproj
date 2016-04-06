@@ -127,7 +127,6 @@
 		D89605531CB1AE2700F2E3CA /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				D8443D471CB027720043AA98 /* ShadowView.swift */,
 				D89605541CB1AE3300F2E3CA /* ShadowViewElement.swift */,
 			);
 			name = Protocols;
@@ -148,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				D8276DEE1CB10E1100EF4B9F /* StateView.swift */,
+				D8443D471CB027720043AA98 /* ShadowView.swift */,
 				D89605531CB1AE2700F2E3CA /* Protocols */,
 			);
 			name = Library;

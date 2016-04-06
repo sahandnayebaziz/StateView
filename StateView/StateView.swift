@@ -58,25 +58,26 @@ class StateView: UIView {
     }
     
     func place(elementType: StateView.Type, key: String, constraints constraintsMaker: ((make: ConstraintMaker) -> Void)) -> ShadowViewElement {
-        let element = ShadowViewElement(key: key, elementType: elementType, constraints: constraintsMaker)
+        let element = ShadowViewElement(key: key, elementType: elementType, constraints: constraintsMaker, containingView: self)
         shadow.place(element)
         return element
     }
-    
-    func setProp(forViewKey viewKey: String, toValue value: AnyObject, forKey key: String) {
-        props = props.filter { $0.key != key && $0.viewKey != key }
-        props.append(StateViewPropWithValue(viewKey: viewKey, key: key, value: value))
+
+    func setProp(forView: ShadowViewElement, toValue value: AnyObject, forKey key: String) {
+        props = props.filter { !($0.key == key && $0.viewKey == forView.key) }
+        props.append(StateViewPropWithValue(viewKey: forView.key, key: key, value: value))
+        print(props.count)
     }
     
-    func setProp(forViewKey viewKey: String, toStateKey stateKey: String, forKey key: String) {
-        props = props.filter { $0.key != key && $0.viewKey != key }
-        props.append(StateViewPropWithStateLink(viewKey: viewKey, key: key, value: "unset", stateKey: stateKey))
-        
+    func setProp(forView: ShadowViewElement, toStateKey stateKey: String, forKey key: String) {
+        props = props.filter { !($0.key == key && $0.viewKey == forView.key) }
+        props.append(StateViewPropWithStateLink(viewKey: forView.key, key: key, value: "unset", stateKey: stateKey))
+        print(props.count)
     }
     
-    func setProp(forViewKey viewKey: String, forKey key: String, toFunction function: (([String: AnyObject]->Void))) {
-        props = props.filter { $0.key != key && $0.viewKey != key }
-        props.append(StateViewPropWithFunction(viewKey: viewKey, key: key, function: function))
+    func setProp(forView: ShadowViewElement, forKey key: String, toFunction function: (([String: AnyObject]->Void))) {
+        props = props.filter { !($0.key == key && $0.viewKey == forView.key) }
+        props.append(StateViewPropWithFunction(viewKey: forView.key, key: key, function: function))
     }
     
     func prop(withValueForKey key: String) -> AnyObject? {

@@ -1,4 +1,4 @@
-//
+    //
 //  HomeView.swift
 //  StateView
 //
@@ -21,13 +21,14 @@ class HomeView: StateView {
     override func render() {
         backgroundColor = UIColor.lightGrayColor()
         
-        place(FieldLabelView.self, key: "label") { make in
+        let genderField = place(FieldLabelView.self, key: "label") { make in
             make.size.equalTo(self)
             make.center.equalTo(self)
         }
-        setProp(forViewKey: "label", toStateKey: "placeholder", forKey: "placeholder")
-        setProp(forViewKey: "label", toValue: self.state["name"] as! String , forKey: "name")
-        setProp(forViewKey: "label", forKey: "didReceiveText") { values in
+        let name = self.state["name"] as? String
+        genderField.prop(forKey: "name", is: self.state["name"] as! String)
+        genderField.prop(forKey: "placeholder", isLinkedToKeyInState: "placeholder")
+        genderField.setValue({ values in
             if let text = values["text"] as? String {
                 self.state["name"] = text
                 
@@ -40,16 +41,16 @@ class HomeView: StateView {
                 }
                 
             }
-        }
+        }, forKey: "didReceiveText")
         
         if self.state["nextButtonEnabled"] != nil {
-            place(NextButton.self, key: "nextButton") { make in
+            let nextButton = place(NextButton.self, key: "nextButton") { make in
                 make.width.equalTo(self)
                 make.height.equalTo(44)
                 make.bottom.equalTo(self)
                 make.centerX.equalTo(self)
             }
-            setProp(forViewKey: "nextButton", toStateKey: "nextButtonEnabled", forKey: "enabled")
+            nextButton.prop(forKey: "enabled", isLinkedToKeyInState: "nextButtonEnabled")
         }
     }
 }
