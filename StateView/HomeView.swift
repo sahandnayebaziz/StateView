@@ -25,7 +25,6 @@ class HomeView: StateView {
             make.size.equalTo(self)
             make.center.equalTo(self)
         }
-        let name = self.state["name"] as? String
         genderField.prop(forKey: "name", is: self.state["name"] as! String)
         genderField.prop(forKey: "placeholder", isLinkedToKeyInState: "placeholder")
         genderField.setValue({ values in

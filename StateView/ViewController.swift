@@ -10,22 +10,36 @@ import UIKit
 import SnapKit
 import Dwifft
 
-class ViewController: UIViewController {
+class ViewController: StateViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        rootView = HomeView()
+    }
     
-    var stateView = StateView()
+}
+
+class StateViewController: UIViewController {
+    
+    var rootView: StateView? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
-        let rootView = HomeView()
+        guard let rootView = self.rootView else {
+            fatalError("A state view controller's rootView property must be set with a StateView in viewDidLoad.")
+        }
+        
         view.addSubview(rootView)
         rootView.snp_makeConstraints { make in
-            make.size.equalTo(300)
+            make.size.equalTo(self.view)
             make.center.equalTo(self.view)
         }
         rootView.renderDeep()
-        
-        
     }
     
 }
