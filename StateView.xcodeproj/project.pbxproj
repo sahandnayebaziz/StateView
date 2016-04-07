@@ -103,7 +103,7 @@
 		D8443D261CB025600043AA98 /* StateView */ = {
 			isa = PBXGroup;
 			children = (
-				D8F7F2491CB1A0D800BDDAD9 /* Library */,
+				D84914E01CB5FA750069AA23 /* Sources */,
 				D8F7F2481CB1A0CE00BDDAD9 /* Views */,
 				D8443D271CB025600043AA98 /* AppDelegate.swift */,
 				D8443D291CB025600043AA98 /* ViewController.swift */,
@@ -124,12 +124,14 @@
 			path = StateViewTests;
 			sourceTree = "<group>";
 		};
-		D89605531CB1AE2700F2E3CA /* Protocols */ = {
+		D84914E01CB5FA750069AA23 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				D8276DEE1CB10E1100EF4B9F /* StateView.swift */,
+				D8443D471CB027720043AA98 /* ShadowView.swift */,
 				D89605541CB1AE3300F2E3CA /* ShadowViewElement.swift */,
 			);
-			name = Protocols;
+			name = Sources;
 			sourceTree = "<group>";
 		};
 		D8F7F2481CB1A0CE00BDDAD9 /* Views */ = {
@@ -141,16 +143,6 @@
 				D89605511CB1AC1300F2E3CA /* NextButton.swift */,
 			);
 			name = Views;
-			sourceTree = "<group>";
-		};
-		D8F7F2491CB1A0D800BDDAD9 /* Library */ = {
-			isa = PBXGroup;
-			children = (
-				D8276DEE1CB10E1100EF4B9F /* StateView.swift */,
-				D8443D471CB027720043AA98 /* ShadowView.swift */,
-				D89605531CB1AE2700F2E3CA /* Protocols */,
-			);
-			name = Library;
 			sourceTree = "<group>";
 		};
 		E5C758BA916F4B600E9032BC /* Frameworks */ = {

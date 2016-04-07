@@ -66,13 +66,11 @@ class StateView: UIView {
     func setProp(forView: ShadowViewElement, toValue value: AnyObject, forKey key: String) {
         props = props.filter { !($0.key == key && $0.viewKey == forView.key) }
         props.append(StateViewPropWithValue(viewKey: forView.key, key: key, value: value))
-        print(props.count)
     }
     
     func setProp(forView: ShadowViewElement, toStateKey stateKey: String, forKey key: String) {
         props = props.filter { !($0.key == key && $0.viewKey == forView.key) }
         props.append(StateViewPropWithStateLink(viewKey: forView.key, key: key, value: "unset", stateKey: stateKey))
-        print(props.count)
     }
     
     func setProp(forView: ShadowViewElement, forKey key: String, toFunction function: (([String: AnyObject]->Void))) {
