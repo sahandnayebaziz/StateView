@@ -6,9 +6,7 @@
 //  Copyright © 2016 Sahand Nayebaziz. All rights reserved.
 //
 
-import Foundation
 import UIKit
-import Dwifft
 import SnapKit
 
 // knows which views are in the view

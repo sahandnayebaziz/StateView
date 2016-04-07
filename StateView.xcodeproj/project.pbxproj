@@ -16,6 +16,7 @@
 		D8443D321CB025600043AA98 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8443D301CB025600043AA98 /* LaunchScreen.storyboard */; };
 		D8443D3D1CB025610043AA98 /* StateViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8443D3C1CB025610043AA98 /* StateViewTests.swift */; };
 		D8443D481CB027720043AA98 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8443D471CB027720043AA98 /* ShadowView.swift */; };
+		D84914E21CB6037C0069AA23 /* Dwifft.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84914E11CB6037C0069AA23 /* Dwifft.swift */; };
 		D89605521CB1AC1300F2E3CA /* NextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89605511CB1AC1300F2E3CA /* NextButton.swift */; };
 		D89605551CB1AE3300F2E3CA /* ShadowViewElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89605541CB1AE3300F2E3CA /* ShadowViewElement.swift */; };
 		D8A4814D1CB215B2009E5B3A /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A4814C1CB215B2009E5B3A /* Label.swift */; };
@@ -52,6 +53,7 @@
 		D8443D3C1CB025610043AA98 /* StateViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateViewTests.swift; sourceTree = "<group>"; };
 		D8443D3E1CB025610043AA98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8443D471CB027720043AA98 /* ShadowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
+		D84914E11CB6037C0069AA23 /* Dwifft.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dwifft.swift; sourceTree = "<group>"; };
 		D89605511CB1AC1300F2E3CA /* NextButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextButton.swift; sourceTree = "<group>"; };
 		D89605541CB1AE3300F2E3CA /* ShadowViewElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowViewElement.swift; sourceTree = "<group>"; };
 		D8A4814C1CB215B2009E5B3A /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
@@ -105,11 +107,6 @@
 			children = (
 				D84914E01CB5FA750069AA23 /* Sources */,
 				D8F7F2481CB1A0CE00BDDAD9 /* Views */,
-				D8443D271CB025600043AA98 /* AppDelegate.swift */,
-				D8443D291CB025600043AA98 /* ViewController.swift */,
-				D8443D2B1CB025600043AA98 /* Main.storyboard */,
-				D8443D2E1CB025600043AA98 /* Assets.xcassets */,
-				D8443D301CB025600043AA98 /* LaunchScreen.storyboard */,
 				D8443D331CB025600043AA98 /* Info.plist */,
 			);
 			path = StateView;
@@ -130,6 +127,7 @@
 				D8276DEE1CB10E1100EF4B9F /* StateView.swift */,
 				D8443D471CB027720043AA98 /* ShadowView.swift */,
 				D89605541CB1AE3300F2E3CA /* ShadowViewElement.swift */,
+				D84914E11CB6037C0069AA23 /* Dwifft.swift */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -137,10 +135,15 @@
 		D8F7F2481CB1A0CE00BDDAD9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D8443D271CB025600043AA98 /* AppDelegate.swift */,
 				D8F7F2461CB1A07000BDDAD9 /* FieldLabelView.swift */,
 				D8A4814C1CB215B2009E5B3A /* Label.swift */,
 				D8F7F24A1CB1A0F900BDDAD9 /* HomeView.swift */,
 				D89605511CB1AC1300F2E3CA /* NextButton.swift */,
+				D8443D291CB025600043AA98 /* ViewController.swift */,
+				D8443D2B1CB025600043AA98 /* Main.storyboard */,
+				D8443D301CB025600043AA98 /* LaunchScreen.storyboard */,
+				D8443D2E1CB025600043AA98 /* Assets.xcassets */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				D8276DEF1CB10E1100EF4B9F /* StateView.swift in Sources */,
 				D8443D2A1CB025600043AA98 /* ViewController.swift in Sources */,
 				D8443D281CB025600043AA98 /* AppDelegate.swift in Sources */,
+				D84914E21CB6037C0069AA23 /* Dwifft.swift in Sources */,
 				D8F7F24B1CB1A0F900BDDAD9 /* HomeView.swift in Sources */,
 				D8443D481CB027720043AA98 /* ShadowView.swift in Sources */,
 				D8A4814D1CB215B2009E5B3A /* Label.swift in Sources */,

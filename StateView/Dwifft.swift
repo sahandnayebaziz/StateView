@@ -1,5 +1,5 @@
 //
-//  LCS.swift
+//  Dwifft.swift
 //  Dwifft
 //
 //  Created by Jack Flintermann on 3/14/15.

@@ -1,15 +1,12 @@
 PODS:
-  - Dwifft (0.3.1)
   - SnapKit (0.20.0)
 
 DEPENDENCIES:
-  - Dwifft
   - SnapKit
 
 SPEC CHECKSUMS:
-  Dwifft: b7eaeaaf4ac14a2e77b0c661cd1b5524c58fa891
   SnapKit: 5fce3c1bbbf1fbd31de9aa92f33eb9fa03f15650
 
-PODFILE CHECKSUM: 3407bac6c1e86d55b21a2efcfc4c893acc9b087a
+PODFILE CHECKSUM: 887744aeba0a53d6e06709d418a399245c67151c
 
 COCOAPODS: 1.0.0.beta.6

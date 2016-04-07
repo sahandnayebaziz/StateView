@@ -4,11 +4,9 @@ use_frameworks!
 target 'StateView' do
 
 pod 'SnapKit'
-pod 'Dwifft'
 
 end
 
 target 'StateViewTests' do
 
 end
-

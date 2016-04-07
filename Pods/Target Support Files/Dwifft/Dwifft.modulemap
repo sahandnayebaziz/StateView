@@ -1,6 +1,0 @@
-framework module Dwifft {
-  umbrella header "Dwifft-umbrella.h"
-
-  export *
-  module * { export * }
-}
