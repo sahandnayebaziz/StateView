@@ -11,17 +11,21 @@ import SnapKit
 
 // knows which views are in the view
 class ShadowView: UIView {
-    var views: [ShadowViewElement] = []
-    var newViews: [ShadowViewElement] = []
+    var views: [ShadowGenericElement] = []
+    var newViews: [ShadowGenericElement] = []
     
-    var renderedViews: [String: StateView] = [:]
+    var renderedViews: [String: UIView] = [:]
     var paintView: UIView!
+    
+    var parentViewController: UIViewController? = nil
 
-    func place(element: ShadowViewElement) {
+    func place(element: ShadowGenericElement) {
         newViews.append(element)
     }
     
     func didPlaceAll(props: [StateViewProp]) {
+//        views = views.flatMap { $0 as? ShadowStateViewElement }
+        
         let diff = views.diff(newViews)
         if !diff.results.isEmpty {
             
@@ -32,9 +36,14 @@ class ShadowView: UIView {
                 }
             }
             
+            guard let parentViewController = parentViewController else {
+                fatalError("A state view must be initialized with a connection to its parent view controller to allow for it's subviews to have a view controller to call. Use a StateViewController to make this connection automatically, or call setRootStateView() on your root state view in any heirarchy")
+            }
+            
             for insertion in diff.insertions {
                 let viewElement = insertion.value
-                let initializedView = viewElement.elementType.init()
+                
+                let initializedView = viewElement.getInitializedViewWithParentViewController(parentViewController)
                 
                 let hash = NSUUID().UUIDString
                 viewElement.viewHash = hash
@@ -65,14 +74,16 @@ class ShadowView: UIView {
 
     private func renderViewsWithProps(props: [StateViewProp]) {
         for viewElement in views {
-            let propsToUse = props.filter { $0.viewKey == viewElement.key }
-            viewElement.setProps(propsToUse)
-            
-            if let viewHash = viewElement.viewHash, let viewForHash = renderedViews[viewHash] {
-                viewForHash.props = propsToUse
-                viewForHash.renderDeep()
-            } else {
-                fatalError("Any recycled viewElement must keep a viewHash for it's corresponding view")
+            if let viewElement = viewElement as? ShadowStateViewElement {
+                let propsToUse = props.filter { $0.viewKey == viewElement.key }
+                viewElement.setProps(propsToUse)
+                
+                if let viewHash = viewElement.viewHash, let viewForHash = renderedViews[viewHash], let stateView = viewForHash as? StateView {
+                    stateView.props = propsToUse
+                    stateView.renderDeep()
+                } else {
+                    fatalError("Any recycled viewElement must keep a viewHash for it's corresponding view")
+                }
             }
         }
     }

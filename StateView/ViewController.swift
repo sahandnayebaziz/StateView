@@ -13,26 +13,26 @@ class ViewController: StateViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        rootView = HomeView()
+        rootView = HomeView(parentViewController: self)
     }
     
 }
 
-class StateViewController: UIViewController {
+public class StateViewController: UIViewController {
     
-    var rootView: StateView? = nil
+    public var rootView: StateView? = nil
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         guard let rootView = self.rootView else {
             fatalError("A state view controller's rootView property must be set with a StateView in viewDidLoad.")
         }
-        
+
         view.addSubview(rootView)
         rootView.snp_makeConstraints { make in
             make.size.equalTo(self.view)

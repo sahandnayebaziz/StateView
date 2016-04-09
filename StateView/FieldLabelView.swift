@@ -13,7 +13,7 @@ class FieldLabelView: StateView {
     var label: UILabel?
     var textField: UITextField?
     
-    override func getInitialState() -> [String : AnyObject] {
+    override func getInitialState() -> [String : AnyObject?] {
         return ["text": "hello"]
     }
     

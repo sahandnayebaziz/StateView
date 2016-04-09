@@ -10,27 +10,32 @@ import UIKit
 import SnapKit
 
 // similar to component
-class StateView: UIView {
+public class StateView: UIView {
     var shadow = ShadowView()
-    var props: [StateViewProp] = []
-    var state: [String: AnyObject] = [:] {
+    public var props: [StateViewProp] = []
+    public var state: [String: AnyObject?] = [:] {
         didSet {
             props.removeAll()
             renderDeep()
         }
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    public var parentViewController: UIViewController
+    
+    public required init(parentViewController: UIViewController) {
+        self.parentViewController = parentViewController
+        shadow.parentViewController = parentViewController
+        
+        super.init(frame: CGRectZero)
         shadow.paintView = self
         self.state = getInitialState()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func getInitialState() -> [String: AnyObject] {
+    public func getInitialState() -> [String: AnyObject?] {
         return [:]
     }
     
@@ -39,7 +44,7 @@ class StateView: UIView {
         shadow.didPlaceAll(resolveProps(self.props))
     }
     
-    func render() {
+    public func render() {
         
     }
     
@@ -48,8 +53,13 @@ class StateView: UIView {
 
         for prop in props {
             if let prop = prop as? StateViewPropWithStateLink {
-                let newProp = StateViewPropWithValue(viewKey: prop.viewKey, key: prop.key, value: self.state[prop.stateKey]!)
-                propsToUse.append(newProp)
+                if let valueInState = self.state[prop.stateKey] {
+                    let newProp = StateViewPropWithValue(viewKey: prop.viewKey, key: prop.key, value: valueInState)
+                    propsToUse.append(newProp)
+                } else {
+                    NSLog("Warning: a prop was set to a state key without a matching key/value pair in the state. This prop was skipped.")
+                }
+                
             } else {
                 propsToUse.append(prop)
             }
@@ -57,28 +67,34 @@ class StateView: UIView {
         return propsToUse
     }
     
-    func place(elementType: StateView.Type, key: String, constraints constraintsMaker: ((make: ConstraintMaker) -> Void)) -> ShadowViewElement {
-        let element = ShadowViewElement(key: key, elementType: elementType, constraints: constraintsMaker, containingView: self)
-        shadow.place(element)
-        return element
+    public func place(type: StateView.Type, key: String, constraints: ((make: ConstraintMaker) -> Void)) -> ShadowStateViewElement {
+        let shadowElement = ShadowStateViewElement(key: key, containingView: self, constraints: constraints, type: type)
+        shadow.place(shadowElement)
+        return shadowElement
+    }
+    
+    public func place(view: UIView, key: String, constraints: ((make: ConstraintMaker) -> Void)) -> ShadowViewElement {
+        let shadowElement = ShadowViewElement(key: key, containingView: self, constraints: constraints, view: view)
+        shadow.place(shadowElement)
+        return shadowElement
     }
 
-    func setProp(forView: ShadowViewElement, toValue value: AnyObject, forKey key: String) {
+    func setProp(forView: ShadowStateViewElement, toValue value: AnyObject?, forKey key: String) {
         props = props.filter { !($0.key == key && $0.viewKey == forView.key) }
         props.append(StateViewPropWithValue(viewKey: forView.key, key: key, value: value))
     }
     
-    func setProp(forView: ShadowViewElement, toStateKey stateKey: String, forKey key: String) {
+    func setProp(forView: ShadowStateViewElement, toStateKey stateKey: String, forKey key: String) {
         props = props.filter { !($0.key == key && $0.viewKey == forView.key) }
         props.append(StateViewPropWithStateLink(viewKey: forView.key, key: key, value: "unset", stateKey: stateKey))
     }
     
-    func setProp(forView: ShadowViewElement, forKey key: String, toFunction function: (([String: AnyObject]->Void))) {
+    func setProp(forView: ShadowStateViewElement, forKey key: String, toFunction function: (([String: AnyObject]->Void))) {
         props = props.filter { !($0.key == key && $0.viewKey == forView.key) }
         props.append(StateViewPropWithFunction(viewKey: forView.key, key: key, function: function))
     }
     
-    func prop(withValueForKey key: String) -> AnyObject? {
+    public func prop(withValueForKey key: String) -> AnyObject? {
         let possibleProp = props.filter { prop in
             guard let _ = prop as? StateViewPropWithValue else {
                 return false
@@ -94,7 +110,7 @@ class StateView: UIView {
         return prop.value
     }
     
-    func prop(withFunctionForKey key: String) -> (([String: AnyObject] ->Void))? {
+    public func prop(withFunctionForKey key: String) -> (([String: AnyObject] ->Void))? {
         let possibleProp = props.filter { prop in
             guard let _ = prop as? StateViewPropWithFunction else {
                 return false

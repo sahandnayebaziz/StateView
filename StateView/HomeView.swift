@@ -10,7 +10,7 @@ import UIKit
 
 class HomeView: StateView {
     
-    override func getInitialState() -> [String : AnyObject] {
+    override func getInitialState() -> [String : AnyObject?] {
         return [
             "placeholder":"Is this working?",
             "nextButtonEnabled": false,
@@ -27,7 +27,7 @@ class HomeView: StateView {
         }
         genderField.prop(forKey: "name", is: self.state["name"] as! String)
         genderField.prop(forKey: "placeholder", isLinkedToKeyInState: "placeholder")
-        genderField.setValue({ values in
+        genderField.prop(forKey: "didReceiveText") { values in
             if let text = values["text"] as? String {
                 self.state["name"] = text
                 
@@ -40,7 +40,7 @@ class HomeView: StateView {
                 }
                 
             }
-        }, forKey: "didReceiveText")
+        }
         
         if self.state["nextButtonEnabled"] != nil {
             let nextButton = place(NextButton.self, key: "nextButton") { make in
