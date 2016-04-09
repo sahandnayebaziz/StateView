@@ -18,7 +18,7 @@ With StateView...
 
 ## What's it like?
 
-When you create your first StateView, you will become familiar with **props**, **state**, and **render()**. 
+When you create your first StateView, you will become familiar with **props**, **state**, and **render()**. StateView is simply a subclass of UIView that uses these three to update itself when your data changes.
 
 You can use **props** to pass values from one StateView to another, **state** to keep values privately inside a StateView, and **render()** to actually describe how a StateView looks.
 
