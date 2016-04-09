@@ -9,11 +9,11 @@ StateView is a class that uses modern thinking and inspirations from what Facebo
 With StateView... 
 - Your views update themselves when your data changes.
 - Your views add and remove their subviews by themselves when your data changes.
-- Your views only update themselves if they need to. A StateView calculates a diff (powered by a wonderful package named Dwifft) every time data changes to understand which subviews can stay, which can go, and which can be refreshed. Then, your StateView makes only those minimal changes.
+- Your views only update themselves if they need to. A StateView calculates a diff (powered by a wonderful package named [Dwifft](https://github.com/jflinter/Dwifft)) every time data changes to understand which subviews can stay, which can go, and which can be refreshed. Then, your StateView makes only those minimal changes.
 - You can write any custom view as a StateView by describing how it should look once in the render method.
 - You can write StateViews that contain other StateViews, standard UIViews, or a mix of both!
 - You can include any standard UIView subclass in your StateViews and watch that view get added, removed, and updated automatically without any new code or special wrapping. 
-- You can encourage your app to have and keep state across its many pieces. Using a StateView makes managing this state easier as you don't have to think about when, where, or how often to call methods like `addSubview` and `removeFromSuperview`.
+- You can encourage your app to have and keep state across its many pieces. Using a StateView makes managing this state easier as you don't have to think about when, where, or how often to call methods like addSubview and removeFromSuperview.
 - You don't need to re-architect your app to be a declarative, functional, event-streamed, sequence-based, event-catching app to enjoy the benefits of reactivity and a family of views that are all pure functions of their state.
 
 ## What's it like?
@@ -47,7 +47,7 @@ override func render() {
 }
 ```
 
-If in **state**, the key "selectedImage" contains a UIImage, an 'ImageViewWithTags' is placed, given the key "image", and given some AutoLayout constraints (using a wonderful library named SnapKit). If in **state**, "selectedImage" is nil or missing altogether, a PlaceholderImageView is placed instead.
+If in **state**, the key "selectedImage" contains a UIImage, an 'ImageViewWithTags' is placed, given the key "image", and given some AutoLayout constraints (using a wonderful library named [SnapKit](https://github.com/SnapKit/SnapKit)). If in **state**, "selectedImage" is nil or missing altogether, a PlaceholderImageView is placed instead.
 
 Simply update the data and the view will update itself.
 
@@ -97,11 +97,8 @@ A full list of methods you can call when using StateView is listed in the wiki.
 
 ## Credits
 
-StateView was written by Sahand Nayebaziz. StateView was inspired by React and the DOM.
+StateView was written by Sahand Nayebaziz. StateView was inspired by [React](https://facebook.github.io/react/) and the DOM.
 
 ## License
 
 StateView is released under the MIT license. See LICENSE for details.
-
-
-</pre><br class="Apple-interchange-newline">
