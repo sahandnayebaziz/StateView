@@ -24,8 +24,6 @@ class ShadowView: UIView {
     }
     
     func didPlaceAll(props: [StateViewProp]) {
-//        views = views.flatMap { $0 as? ShadowStateViewElement }
-        
         let diff = views.diff(newViews)
         if !diff.results.isEmpty {
             
@@ -55,21 +53,38 @@ class ShadowView: UIView {
             
             // update view records
             views = views.apply(diff)
-            newViews.removeAll(keepCapacity: true)
             
             // warn on error
             if views.count != renderedViews.keys.count {
                 fatalError("Views cannot existing in a ShadowView without a matching entry in views and renderedViews.")
             }
-            
-            // render
-            renderViewsWithProps(props)
-        } else {
-            
-            // go ahead and render
-            newViews.removeAll(keepCapacity: true)
-            renderViewsWithProps(props)
         }
+        
+        // force update all constraints
+        for newPlacement in newViews {
+            let possibleMatchingViews = views.filter { $0.key == newPlacement.key && $0.containingView == newPlacement.containingView }
+            if !possibleMatchingViews.isEmpty {
+                if possibleMatchingViews.count == 1 {
+                    guard let hash = possibleMatchingViews[0].viewHash else {
+                        fatalError("All views in shadow.views must have a viewHash.")
+                    }
+                    
+                    guard let view = renderedViews[hash] else {
+                        fatalError("All views in shadow.views given a viewHash must have an item in shadow.renderedViews.")
+                    }
+                    
+                    view.snp_remakeConstraints(closure: newPlacement.constraints)
+                } else {
+                    fatalError("All immediate children of a StateView must be given unique keys.")
+                }
+            }
+        }
+        
+        // render
+        renderViewsWithProps(props)
+        
+        // flush new views
+        newViews.removeAll(keepCapacity: true)
     }
 
     private func renderViewsWithProps(props: [StateViewProp]) {

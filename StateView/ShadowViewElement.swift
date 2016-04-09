@@ -41,7 +41,13 @@ public class ShadowGenericElement: ShadowElement {
 }
 
 public func ==(lhs: ShadowGenericElement, rhs: ShadowGenericElement) -> Bool {
-    return lhs.key == rhs.key && lhs.containingView == rhs.containingView
+    if let lhsState = lhs as? ShadowStateViewElement, let rhsState = rhs as? ShadowStateViewElement {
+        return lhsState.key == rhsState.key && lhsState.containingView == rhsState.containingView && lhsState.type == rhsState.type
+    } else if let lhsView = lhs as? ShadowViewElement, let rhsView = rhs as? ShadowViewElement {
+        return lhsView.key == rhsView.key && lhsView.containingView == rhsView.containingView && lhsView.view == rhsView.view
+    } else {
+        return lhs.key == rhs.key && lhs.containingView == rhs.containingView
+    }
 }
 
 public class ShadowViewElement: ShadowGenericElement {
