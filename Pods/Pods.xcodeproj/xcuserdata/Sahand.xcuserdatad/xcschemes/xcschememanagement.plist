@@ -9,11 +9,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-StateViewTests.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>SnapKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -28,11 +23,6 @@
 			<true/>
 		</dict>
 		<key>8C005CDED40FB6128E12E46900FEBB5C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F4575481EC5B0C95F135D2DB717AC55A</key>
 		<dict>
 			<key>primary</key>
 			<true/>

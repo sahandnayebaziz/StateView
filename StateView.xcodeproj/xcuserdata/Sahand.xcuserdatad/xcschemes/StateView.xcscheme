@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D8443D231CB025600043AA98"
-               BuildableName = "StateView.app"
+               BlueprintIdentifier = "D8A73A3B1CB96E4B00D6581A"
+               BuildableName = "StateView.framework"
                BlueprintName = "StateView"
                ReferencedContainer = "container:StateView.xcodeproj">
             </BuildableReference>
@@ -42,8 +42,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D8443D231CB025600043AA98"
-            BuildableName = "StateView.app"
+            BlueprintIdentifier = "D8A73A3B1CB96E4B00D6581A"
+            BuildableName = "StateView.framework"
             BlueprintName = "StateView"
             ReferencedContainer = "container:StateView.xcodeproj">
          </BuildableReference>
@@ -65,8 +65,8 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D8443D231CB025600043AA98"
-            BuildableName = "StateView.app"
+            BlueprintIdentifier = "D8A73A3B1CB96E4B00D6581A"
+            BuildableName = "StateView.framework"
             BlueprintName = "StateView"
             ReferencedContainer = "container:StateView.xcodeproj">
          </BuildableReference>
@@ -84,8 +84,8 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D8443D231CB025600043AA98"
-            BuildableName = "StateView.app"
+            BlueprintIdentifier = "D8A73A3B1CB96E4B00D6581A"
+            BuildableName = "StateView.framework"
             BlueprintName = "StateView"
             ReferencedContainer = "container:StateView.xcodeproj">
          </BuildableReference>

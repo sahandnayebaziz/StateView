@@ -8,7 +8,6 @@
 
 import UIKit
 import SnapKit
-import StateView
 
 protocol ShadowElement: Equatable {
     var key: String { get set }

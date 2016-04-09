@@ -6,7 +6,3 @@ target 'StateView' do
 pod 'SnapKit'
 
 end
-
-target 'StateViewTests' do
-
-end
