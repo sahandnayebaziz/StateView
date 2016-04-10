@@ -88,7 +88,7 @@ When you create your first StateView, you will become familiar with the followin
 - Which code is responsible for changing that value in **state** again? Oh, this callback here. I should add an initial value for that key in **state** to this StateView so that my **render()** has something concrete to use to decide what to display before that callback returns something.  
 - Is there anything else I should put in **render()** since render runs anytime my data changes? Is there anything else I'd like to be subtly different in my view when my data looks like this but not like that?
 
-A full documentation and getting started guide is in the wiki.
+A [full documentation](https://github.com/sahandnayebaziz/StateView/wiki/Documentation) of StateView and a [getting started](https://github.com/sahandnayebaziz/StateView/wiki/Getting-started) guide is in the [wiki](https://github.com/sahandnayebaziz/StateView/wiki).
 
 ## In Action
 
