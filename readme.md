@@ -107,7 +107,17 @@ When **state** changes in one of your views, a ShadowView orchestrates the calcu
 
 ## Installation
 
+You can install StateView from CocoaPods.
+
+`pod 'StateView'`
+
 ## What's next?
+
+StateView was made to give iOS developers a safe, easy way to see their views update themselves. Above all, the goal is for StateView to be easy to use.
+
+Any help towards making the methods, parameters, and patterns contained inside feel simpler despite the complexity of what StateView does is appreciated greatly. As are improvements to the performance of StateView.
+
+If you’d like to contribute, take a look at the list of known issues in the wiki. 
 
 ## Credits
 
