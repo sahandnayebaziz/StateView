@@ -9,18 +9,18 @@ StateView is a class that uses modern thinking and inspirations from what Facebo
 With StateView... 
 - Your views update themselves when your data changes.
 - Your views add and remove their subviews by themselves when your data changes.
-- Your views only update themselves if they need to. A StateView calculates a diff (powered by a wonderful package named Dwifft) every time data changes to understand which subviews can stay, which can go, and which can be refreshed. Then, your StateView makes only those minimal changes.
+- Your views only update themselves if they need to. A StateView calculates a diff (powered by a wonderful package named [Dwifft](https://github.com/jflinter/Dwifft)) every time data changes to understand which subviews can stay, which can go, and which can be refreshed. Then, your StateView makes only those minimal changes.
 - You can write any custom view as a StateView by describing how it should look once in the render method.
 - You can write StateViews that contain other StateViews, standard UIViews, or a mix of both!
 - You can include any standard UIView subclass in your StateViews and watch that view get added, removed, and updated automatically without any new code or special wrapping. 
-- You can encourage your app to have and keep state across its many pieces. Using a StateView makes managing this state easier as you don't have to think about when, where, or how often to call methods like `addSubview` and `removeFromSuperview`.
+- You can encourage your app to have and keep state across its many pieces. Using a StateView makes managing this state easier as you don't have to think about when, where, or how often to call methods like addSubview and removeFromSuperview.
 - You don't need to re-architect your app to be a declarative, functional, event-streamed, sequence-based, event-catching app to enjoy the benefits of reactivity and a family of views that are all pure functions of their state.
 
 ## What's it like?
 
-When you create your first StateView, you will become familiar with **props**, **state**, and **render()**. 
+When you create your first StateView, you will become familiar with **props**, **state**, and **render()**.
 
-You can use **props** to pass values from one StateView to another, **state** to keep values privately inside a StateView, and **render()** to actually describe how a StateView looks.
+You can use **props** to pass values from one StateView to another, **state** to keep values privately inside a StateView, and **render()** to actually describe how a StateView looks. StateView is simply a subclass of UIView that uses these three to update itself when your data changes.
 
 (Both **props** and **state** are dictionaries with type `[String: AnyObject]` to encourage you to keep and pass around anything that works for you.)
 
@@ -47,7 +47,7 @@ override func render() {
 }
 ```
 
-If in **state**, the key "selectedImage" contains a UIImage, an 'ImageViewWithTags' is placed, given the key "image", and given some AutoLayout constraints (using a wonderful library named SnapKit). If in **state**, "selectedImage" is nil or missing altogether, a PlaceholderImageView is placed instead.
+If in **state**, the key "selectedImage" contains a UIImage, an 'ImageViewWithTags' is placed, given the key "image", and given some AutoLayout constraints (using a wonderful library named [SnapKit](https://github.com/SnapKit/SnapKit)). If in **state**, "selectedImage" is nil or missing altogether, a PlaceholderImageView is placed instead.
 
 Simply update the data and the view will update itself.
 
@@ -77,6 +77,8 @@ override func render() {
 
 Now this instance of ImageViewWithTags will receive selectedImage in its **props** and can use the value in it's own render method to display a UIImageView and set up its own subviews or in any other of its methods for anything else. Any time **state** has a new value for selectedImage, ImageViewWithTags will re-render automatically when it is passed the new value. 
 
+The second value in place, **key**, is used to help understand which views are the same between renders. The value of **key** can be anything you’d like, as long as no other subviews in that StateView have the same key. If the **key** of something you’ve placed changes between renders, StateView will render that subview from scratch instead of keeping the already rendered copy if that copy is still good.
+
 You can use StateViews like this to write a single render method so your StateView knows how to update itself when your data changes.
 
 When you create your first StateView, you will become familiar with the following thought process:
@@ -87,9 +89,21 @@ When you create your first StateView, you will become familiar with the followin
 
 A full list of methods you can call when using StateView is listed in the wiki.
 
+## In Action
+
+The first app built with StateView is [Frame](https://github.com/sahandnayebaziz/StateView-Samples-Frame), an app that can frame portrait and landscape images onto a white background. 
+
+More apps built with StateView will be added here once available.
+
 ## How does it work?
 
+When you use a StateView, behind the scenes StateView keeps a ShadowView to help in understanding which subviews should be removed, added, and updated when your data changes.
 
+Each instance of StateView has a one-to-one matching ShadowView instance that uses lightweight structs and references to keep a record of the view hierarchy and the data that the hierarchy represents. 
+
+Both **render()** and **place()** work closely with a StateView’s ShadowView to make the smallest number of changes to the view hierarchy to update what you see on screen.
+
+When **state** changes in one of your views, a ShadowView orchestrates the calculation of the diff, the adding and removing of any needed or not needed subviews, and the passing of **props** from StateViews to their contained StateViews.
 
 ## Installation
 
@@ -97,11 +111,8 @@ A full list of methods you can call when using StateView is listed in the wiki.
 
 ## Credits
 
-StateView was written by Sahand Nayebaziz. StateView was inspired by React and the DOM.
+StateView was written by Sahand Nayebaziz. StateView was inspired by [React](https://facebook.github.io/react/) and the DOM.
 
 ## License
 
 StateView is released under the MIT license. See LICENSE for details.
-
-
-</pre><br class="Apple-interchange-newline">
