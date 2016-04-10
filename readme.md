@@ -77,6 +77,8 @@ override func render() {
 
 Now this instance of ImageViewWithTags will receive selectedImage in its **props** and can use the value in it's own render method to display a UIImageView and set up its own subviews or in any other of its methods for anything else. Any time **state** has a new value for selectedImage, ImageViewWithTags will re-render automatically when it is passed the new value. 
 
+The second value in place, **key**, is used to help understand which views are the same between renders. The value of **key** can be anything you’d like, as long as no other subviews in that StateView have the same key. If the **key** of something you’ve placed changes between renders, StateView will render that subview from scratch instead of keeping the already rendered copy if that copy is still good.
+
 You can use StateViews like this to write a single render method so your StateView knows how to update itself when your data changes.
 
 When you create your first StateView, you will become familiar with the following thought process:
@@ -87,9 +89,21 @@ When you create your first StateView, you will become familiar with the followin
 
 A full list of methods you can call when using StateView is listed in the wiki.
 
+## In Action
+
+The first app built with StateView is [Frame](https://github.com/sahandnayebaziz/StateView-Samples-Frame), an app that can frame portrait and landscape images onto a white background. 
+
+More apps built with StateView will be added here once available.
+
 ## How does it work?
 
+When you use a StateView, behind the scenes StateView keeps a ShadowView to help in understanding which subviews should be removed, added, and updated when your data changes.
 
+Each instance of StateView has a one-to-one matching ShadowView instance that uses lightweight structs and references to keep a record of the view hierarchy and the data that the hierarchy represents. 
+
+Both **render()** and **place()** work closely with a StateView’s ShadowView to make the smallest number of changes to the view hierarchy to update what you see on screen.
+
+When **state** changes in one of your views, a ShadowView orchestrates the calculation of the diff, the adding and removing of any needed or not needed subviews, and the passing of **props** from StateViews to their contained StateViews.
 
 ## Installation
 
