@@ -92,12 +92,6 @@ A [full documentation](https://github.com/sahandnayebaziz/StateView/wiki/Documen
 
 ## In Action
 
-The first app built with StateView is [Frame](https://github.com/sahandnayebaziz/StateView-Samples-Frame), an app that frames portrait and landscape images onto a white background.
-
-More apps built with StateView will be added here once they are made.
-
-## In Action
-
 [Frame](https://github.com/sahandnayebaziz/StateView-Samples-Frame) is the first app made with StateView. With StateView, Frame ended up being just four classes, three of which are well under one hundred lines.
 
 ## How does it work?
