@@ -2,6 +2,16 @@
 
 StateView is a UIView substitute that automatically updates itself when data changes.
 
+Contents:
+- [Overview](#overview)
+- [What's it like?](#whats-it-like)
+- [Sample apps](#sample-apps)
+- [How does it work?](#how-does-it-work)
+- [Installation](#installation)
+- [What's next?](#whats-next)
+- [Credits](#credits)
+- [License](#license)
+
 ## Overview
 
 StateView is a UIView subclass that uses modern thinking and inspiration from what Facebook has done with React and the DOM to make displaying and updating your views easier, simpler, and more fun.
@@ -90,7 +100,7 @@ When you create your first StateView, you will become familiar with the followin
 
 A [full documentation](https://github.com/sahandnayebaziz/StateView/wiki/Documentation) of StateView and a [getting started](https://github.com/sahandnayebaziz/StateView/wiki/Getting-started) guide is in the [wiki](https://github.com/sahandnayebaziz/StateView/wiki).
 
-## In Action
+## Sample apps
 
 [Frame](https://github.com/sahandnayebaziz/StateView-Samples-Frame) is the first app made with StateView. With StateView, Frame ended up being just four classes, three of which are well under one hundred lines.
 
