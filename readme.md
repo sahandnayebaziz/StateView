@@ -87,7 +87,9 @@ override func render() {
 }
 ```
 
-Now this instance of ImageViewWithTags will receive selectedImage in its **props**. ImageViewWithTags can then access the new value of selectedImage anywhere in any of its methods, and especially in its own render method to do something like update a UIImageView. ImageViewWithTags can access the value of selectedImage by using the same key used here, `Home.image`, which is an enum. You can create any number of your own enums to name your values any way that works for you. Any time **state** has a new value for selectedImage, ImageViewWithTags will receive the new value and update itself.
+Now this instance of ImageViewWithTags will receive selectedImage in its **props**. ImageViewWithTags can then access the new value of selectedImage anywhere in any of its methods, and especially in its own render method to do something like update a UIImageView. 
+
+ImageViewWithTags can access the value of selectedImage by using the same key used here, `Home.image`, which is an enum. You can create any number of your own enums to name your values any way that works for you. Any time **state** has a new value for selectedImage, ImageViewWithTags will receive the new value and update itself.
 
 The second value in place, **key**, is used to help understand which views are the same between renders. The value of **key** can be anything you’d like, as long as no other subviews in that StateView have the same key. If the **key** of something you’ve placed changes between renders, StateView will render that subview from scratch since there won't be any existing views placed with the new **key** that can be preserved.
 
