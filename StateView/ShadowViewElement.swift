@@ -76,15 +76,15 @@ public class ShadowStateViewElement: ShadowGenericElement {
         }
     }
     
-    public func prop(forKey key: String, is value: AnyObject) {
+    public func prop(forKey key: StateKey, is value: AnyObject) {
         containingView.setProp(self, toValue: value, forKey: key)
     }
     
-    public func prop(forKey key: String, isLinkedToKeyInState stateKey: String) {
+    public func prop(forKey key: StateKey, isLinkedToKeyInState stateKey: String) {
         containingView.setProp(self, toStateKey: stateKey, forKey: key)
     }
     
-    public func prop(forKey key: String, isFunction function: ([String: AnyObject]->Void)) {
+    public func prop(forKey key: StateKey, isFunction function: ([String: AnyObject]->Void)) {
         containingView.setProp(self, forKey: key, toFunction: function)
     }
     
@@ -95,42 +95,4 @@ public class ShadowStateViewElement: ShadowGenericElement {
     func didReceiveProps(props: [StateViewProp]) {
         self.props = props
     }
-}
-
-
-// a prop
-public protocol StateViewProp {
-    var viewKey: String { get set }
-    var key: String { get set }
-}
-
-struct StateViewPropWithValue: StateViewProp, Equatable {
-    var viewKey: String
-    var key: String
-    var value: AnyObject?
-}
-
-func ==(lhs: StateViewPropWithValue, rhs: StateViewPropWithValue) -> Bool {
-    return lhs.viewKey == rhs.viewKey && lhs.key == rhs.key && lhs.value === rhs.value
-}
-
-struct StateViewPropWithStateLink: StateViewProp, Equatable {
-    var viewKey: String
-    var key: String
-    var value: AnyObject?
-    var stateKey: String
-}
-
-func ==(lhs: StateViewPropWithStateLink, rhs: StateViewPropWithStateLink) -> Bool {
-    return lhs.viewKey == rhs.viewKey && lhs.key == rhs.key && lhs.stateKey == rhs.stateKey
-}
-
-struct StateViewPropWithFunction: StateViewProp, Equatable {
-    var viewKey: String
-    var key: String
-    var function: ([String: AnyObject] -> Void)
-}
-
-func ==(lhs: StateViewPropWithFunction, rhs: StateViewPropWithFunction) -> Bool {
-    return lhs.viewKey == rhs.viewKey && lhs.key == rhs.key
 }

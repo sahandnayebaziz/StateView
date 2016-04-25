@@ -42,9 +42,9 @@ In **render()**, simply look at your **state** and any passed-in **props**, and 
 
 ```swift
 override func render() {
-
-	if let selectedImage = self.state\["selectedImage"] as? UIImage {
-		let imageView = place(ImageViewWithTags.self, "image") { make in
+	
+	if let selectedImage = self.state["selectedImage"] as? UIImage {
+		place(ImageViewWithTags.self, "image") { make in
 			make.size.equalTo(self)
 			make.center.equalTo(self)
 		}
@@ -65,19 +65,19 @@ Change the value of "selectedImage" in **state** and this StateView will display
 
 This, the way you can use **render()** and **place()**, is one of the most fun parts of using StateView.  
 
-Your code to decide which subviews to add to a StateView can go in **render()** where it will run anytime your data changes. The results of a **render()** pass are then diffed with the results of the previous **render()** pass and your StateView only makes up the difference.
+Your code to decide which subviews to add to a StateView can go in **render()** where it will run any time your data changes. The results of a **render()** pass are then diffed with the results of the previous **render()** pass and your StateView only makes up the difference.
 
 You can use **props** to pass values from one StateView to another. You can propagate new data in the **state** of one StateView to its children this way. In this case, to pass the new image in **state** to ImageViewWithTags, you can write code like...
 
 ```swift
 override func render() {
 
-	if let selectedImage = self.state\["selectedImage"] as? UIImage {
+	if let selectedImage = self.state["selectedImage"] as? UIImage {
 		let imageView = place(ImageViewWithTags.self, "image") { make in
 			make.size.equalTo(self)
 			make.center.equalTo(self)
 		}
-		imageView.prop(forKey: "image", is: selectedImage)
+		imageView.prop(forKey: Home.image, is: selectedImage)
 	} else {
 		place(PlaceholderImageView.self, "placeholder") { make in
 			make.size.equalTo(self)
@@ -87,16 +87,19 @@ override func render() {
 }
 ```
 
-Now this instance of ImageViewWithTags will receive selectedImage in its **props**. ImageViewWithTags can then access the new value of selectedImage anywhere in any of its methods, and especially in its own render method to do something like update a UIImageView. Any time **state** has a new value for selectedImage, ImageViewWithTags will receive the new value and update itself.
+Now this instance of ImageViewWithTags will receive selectedImage in its **props**. ImageViewWithTags can then access the new value of selectedImage anywhere in any of its methods, and especially in its own render method to do something like update a UIImageView. 
 
-The second value in place, **key**, is used to help understand which views are the same between renders. The value of **key** can be anything you’d like, as long as no other subviews in that StateView have the same key. If the **key** of something you’ve placed changes between renders, StateView will render that subview from scratch since there won't be any existing views placed with the new **key** that might have been preserved.
+ImageViewWithTags can access the value of selectedImage by using the same key used here, `Home.image`, which is an enum. You can create any number of your own enums to name your values any way that works for you. Any time **state** has a new value for selectedImage, ImageViewWithTags will receive the new value and update itself.
+
+The second value in place, **key**, is used to help understand which views are the same between renders. The value of **key** can be anything you’d like, as long as no other subviews in that StateView have the same key. If the **key** of something you’ve placed changes between renders, StateView will render that subview from scratch since there won't be any existing views placed with the new **key** that can be preserved.
 
 When you create your first StateView, you will become familiar with the following thought process:
 - How can this view change? I can leave variables in **state** to describe these different changes.
 - Now in **render()**, when **state** has this value for that key, I should place this subview, but if it has this value for that other key, I should place this one instead.
-- That subview will get its **props** from this StateView's parent view, so I can pass two of the **props** passed to this StateView into that subview.
+- I can enumerate all the values I plan on passing between these views so that I can see them in one place and make it easy for others to understand data flow in my application.
+- That subview will get its **props** from this StateView's parent view, so I can pass along two of the **props** passed into this StateView into that StateView.
 - Which code is responsible for changing that value in **state** again? Oh, this callback here. I should add an initial value for that key in **state** to this StateView so that my **render()** has something concrete to use to decide what to display before that callback returns something.  
-- Is there anything else I should put in **render()** since render runs anytime my data changes? Is there anything else I'd like to be subtly different in my view when my data looks like this but not like that?
+- Is there anything else I should put in **render()** since render runs any time my data changes? Is there anything else I'd like to be subtly different in my view when my data looks like this but not like that?
 
 A [full documentation](https://github.com/sahandnayebaziz/StateView/wiki/Documentation) of StateView and a [getting started](https://github.com/sahandnayebaziz/StateView/wiki/Getting-started) guide is in the [wiki](https://github.com/sahandnayebaziz/StateView/wiki).
 

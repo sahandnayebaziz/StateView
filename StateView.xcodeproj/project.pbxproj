@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3566CBD71CC86B9C003F92E0 /* StateViewProp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3566CBD61CC86B9C003F92E0 /* StateViewProp.swift */; };
+		3566CBD91CC86BD3003F92E0 /* StateKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3566CBD81CC86BD3003F92E0 /* StateKey.swift */; };
 		B5A8EDC7142CF913CECBA4CF /* Pods_StateView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D73D16DFBC49CBD0401DFF77 /* Pods_StateView.framework */; };
 		D8A73A3F1CB96E4C00D6581A /* StateView.h in Headers */ = {isa = PBXBuildFile; fileRef = D8A73A3E1CB96E4C00D6581A /* StateView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D8A73A4A1CB96F3100D6581A /* StateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8276DEE1CB10E1100EF4B9F /* StateView.swift */; };
@@ -20,6 +22,8 @@
 		0041687E5992B49580004D5C /* Pods_StateViewTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StateViewTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		098E793B480605D701361D4D /* Pods-StateView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StateView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StateView/Pods-StateView.debug.xcconfig"; sourceTree = "<group>"; };
 		23BE63341F8C306245BEB551 /* Pods-StateViewTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StateViewTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StateViewTests/Pods-StateViewTests.release.xcconfig"; sourceTree = "<group>"; };
+		3566CBD61CC86B9C003F92E0 /* StateViewProp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateViewProp.swift; sourceTree = "<group>"; };
+		3566CBD81CC86BD3003F92E0 /* StateKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateKey.swift; sourceTree = "<group>"; };
 		5245734DEEEAD80F16B5254F /* Pods-StateView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StateView.release.xcconfig"; path = "Pods/Target Support Files/Pods-StateView/Pods-StateView.release.xcconfig"; sourceTree = "<group>"; };
 		D73D16DFBC49CBD0401DFF77 /* Pods_StateView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StateView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8276DEE1CB10E1100EF4B9F /* StateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateView.swift; sourceTree = "<group>"; };
@@ -93,6 +97,8 @@
 				D8443D471CB027720043AA98 /* ShadowView.swift */,
 				D89605541CB1AE3300F2E3CA /* ShadowViewElement.swift */,
 				D8A73A441CB96EA900D6581A /* StateViewController.swift */,
+				3566CBD61CC86B9C003F92E0 /* StateViewProp.swift */,
+				3566CBD81CC86BD3003F92E0 /* StateKey.swift */,
 				D84914E11CB6037C0069AA23 /* Dwifft.swift */,
 			);
 			name = Sources;
@@ -244,7 +250,9 @@
 			files = (
 				D8A73A4D1CB96F3100D6581A /* StateViewController.swift in Sources */,
 				D8A73A4C1CB96F3100D6581A /* ShadowViewElement.swift in Sources */,
+				3566CBD91CC86BD3003F92E0 /* StateKey.swift in Sources */,
 				D8A73A4B1CB96F3100D6581A /* ShadowView.swift in Sources */,
+				3566CBD71CC86B9C003F92E0 /* StateViewProp.swift in Sources */,
 				D8A73A4E1CB96F3100D6581A /* Dwifft.swift in Sources */,
 				D8A73A4A1CB96F3100D6581A /* StateView.swift in Sources */,
 			);
