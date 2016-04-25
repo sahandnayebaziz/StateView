@@ -42,14 +42,14 @@ In **render()**, simply look at your **state** and any passed-in **props**, and 
 
 ```swift
 override func render() {
-
-	if let selectedImage = self.state\["selectedImage"] as? UIImage {
-		let imageView = place(ImageViewWithTags.self, "image") { make in
+	
+	if let selectedImage = self.state["selectedImage"] as? UIImage {
+		let imageView = place(ImageViewWithTags.self, Home.image) { make in
 			make.size.equalTo(self)
 			make.center.equalTo(self)
 		}
 	} else {
-		place(PlaceholderImageView.self, "placeholder") { make in
+		place(PlaceholderImageView.self, Home.placeholder) { make in
 			make.size.equalTo(self)
 			make.center.equalTo(self)
 		}
