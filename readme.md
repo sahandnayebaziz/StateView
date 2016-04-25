@@ -44,12 +44,12 @@ In **render()**, simply look at your **state** and any passed-in **props**, and 
 override func render() {
 	
 	if let selectedImage = self.state["selectedImage"] as? UIImage {
-		let imageView = place(ImageViewWithTags.self, Home.image) { make in
+		place(ImageViewWithTags.self, "image") { make in
 			make.size.equalTo(self)
 			make.center.equalTo(self)
 		}
 	} else {
-		place(PlaceholderImageView.self, Home.placeholder) { make in
+		place(PlaceholderImageView.self, "placeholder") { make in
 			make.size.equalTo(self)
 			make.center.equalTo(self)
 		}
@@ -72,12 +72,12 @@ You can use **props** to pass values from one StateView to another. You can prop
 ```swift
 override func render() {
 
-	if let selectedImage = self.state\["selectedImage"] as? UIImage {
+	if let selectedImage = self.state["selectedImage"] as? UIImage {
 		let imageView = place(ImageViewWithTags.self, "image") { make in
 			make.size.equalTo(self)
 			make.center.equalTo(self)
 		}
-		imageView.prop(forKey: "image", is: selectedImage)
+		imageView.prop(forKey: Home.image, is: selectedImage)
 	} else {
 		place(PlaceholderImageView.self, "placeholder") { make in
 			make.size.equalTo(self)
