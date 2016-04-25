@@ -79,22 +79,22 @@ public class StateView: UIView {
         return shadowElement
     }
 
-    func setProp(forView: ShadowStateViewElement, toValue value: AnyObject?, forKey key: PropKey) {
+    func setProp(forView: ShadowStateViewElement, toValue value: AnyObject?, forKey key: StateKey) {
         props = props.filter { !(propsAreEqual($0.key, otherProp: key) && $0.viewKey == forView.key) }
         props.append(StateViewPropWithValue(viewKey: forView.key, key: key, value: value))
     }
     
-    func setProp(forView: ShadowStateViewElement, toStateKey stateKey: String, forKey key: PropKey) {
+    func setProp(forView: ShadowStateViewElement, toStateKey stateKey: String, forKey key: StateKey) {
         props = props.filter { !(propsAreEqual($0.key, otherProp: key) && $0.viewKey == forView.key) }
         props.append(StateViewPropWithStateLink(viewKey: forView.key, key: key, value: "unset", stateKey: stateKey))
     }
     
-    func setProp(forView: ShadowStateViewElement, forKey key: PropKey, toFunction function: (([String: AnyObject]->Void))) {
+    func setProp(forView: ShadowStateViewElement, forKey key: StateKey, toFunction function: (([String: AnyObject]->Void))) {
         props = props.filter { !(propsAreEqual($0.key, otherProp: key) && $0.viewKey == forView.key) }
         props.append(StateViewPropWithFunction(viewKey: forView.key, key: key, function: function))
     }
     
-    public func prop(withValueForKey key: PropKey) -> AnyObject? {
+    public func prop(withValueForKey key: StateKey) -> AnyObject? {
         let possibleProp = props.filter { prop in
             guard let _ = prop as? StateViewPropWithValue else {
                 return false
@@ -110,7 +110,7 @@ public class StateView: UIView {
         return prop.value
     }
     
-    public func prop(withFunctionForKey key: PropKey) -> (([String: AnyObject] ->Void))? {
+    public func prop(withFunctionForKey key: StateKey) -> (([String: AnyObject] ->Void))? {
         let possibleProp = props.filter { prop in
             guard let _ = prop as? StateViewPropWithFunction else {
                 return false

@@ -11,12 +11,12 @@ import Foundation
 // Protocol for a StateViewProp
 public protocol StateViewProp {
     var viewKey: String { get set }
-    var key: PropKey { get set }
+    var key: StateKey { get set }
 }
 
 struct StateViewPropWithValue: StateViewProp, Equatable {
     var viewKey: String
-    var key: PropKey
+    var key: StateKey
     var value: AnyObject?
 }
 
@@ -26,7 +26,7 @@ func ==(lhs: StateViewPropWithValue, rhs: StateViewPropWithValue) -> Bool {
 
 struct StateViewPropWithStateLink: StateViewProp, Equatable {
     var viewKey: String
-    var key: PropKey
+    var key: StateKey
     var value: AnyObject?
     var stateKey: String
 }
@@ -37,7 +37,7 @@ func ==(lhs: StateViewPropWithStateLink, rhs: StateViewPropWithStateLink) -> Boo
 
 struct StateViewPropWithFunction: StateViewProp, Equatable {
     var viewKey: String
-    var key: PropKey
+    var key: StateKey
     var function: ([String: AnyObject] -> Void)
 }
 

@@ -76,15 +76,15 @@ public class ShadowStateViewElement: ShadowGenericElement {
         }
     }
     
-    public func prop(forKey key: PropKey, is value: AnyObject) {
+    public func prop(forKey key: StateKey, is value: AnyObject) {
         containingView.setProp(self, toValue: value, forKey: key)
     }
     
-    public func prop(forKey key: PropKey, isLinkedToKeyInState stateKey: String) {
+    public func prop(forKey key: StateKey, isLinkedToKeyInState stateKey: String) {
         containingView.setProp(self, toStateKey: stateKey, forKey: key)
     }
     
-    public func prop(forKey key: PropKey, isFunction function: ([String: AnyObject]->Void)) {
+    public func prop(forKey key: StateKey, isFunction function: ([String: AnyObject]->Void)) {
         containingView.setProp(self, forKey: key, toFunction: function)
     }
     

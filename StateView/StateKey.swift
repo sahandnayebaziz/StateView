@@ -1,5 +1,5 @@
 //
-//  StateViewPropKey.swift
+//  StateKey.swift
 //  StateView
 //
 //  Created by Nayebaziz, Sahand on 4/20/16.
@@ -8,10 +8,10 @@
 
 import Foundation
 
-public protocol PropKey {
+public protocol StateKey {
     var hashValue: Int { get }
 }
 
-func propsAreEqual(prop: PropKey, otherProp: PropKey) -> Bool {
+func propsAreEqual(prop: StateKey, otherProp: StateKey) -> Bool {
     return prop.dynamicType == otherProp.dynamicType && prop.hashValue == otherProp.hashValue
 }
