@@ -17,17 +17,17 @@ public protocol StateViewProp {
 struct StateViewPropWithValue: StateViewProp, Equatable {
     var viewKey: String
     var key: StateKey
-    var value: AnyObject?
+    var value: Any?
 }
 
 func ==(lhs: StateViewPropWithValue, rhs: StateViewPropWithValue) -> Bool {
-    return lhs.viewKey == rhs.viewKey && propsAreEqual(lhs.key, otherProp: rhs.key) && lhs.value === rhs.value
+    return lhs.viewKey == rhs.viewKey && propsAreEqual(lhs.key, otherProp: rhs.key) && lhs.value.dynamicType == rhs.value.dynamicType
 }
 
 struct StateViewPropWithStateLink: StateViewProp, Equatable {
     var viewKey: String
     var key: StateKey
-    var value: AnyObject?
+    var value: Any?
     var stateKey: String
 }
 
@@ -38,7 +38,7 @@ func ==(lhs: StateViewPropWithStateLink, rhs: StateViewPropWithStateLink) -> Boo
 struct StateViewPropWithFunction: StateViewProp, Equatable {
     var viewKey: String
     var key: StateKey
-    var function: ([String: AnyObject] -> Void)
+    var function: ([String: Any] -> Void)
 }
 
 func ==(lhs: StateViewPropWithFunction, rhs: StateViewPropWithFunction) -> Bool {
