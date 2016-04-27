@@ -76,7 +76,7 @@ public class ShadowStateViewElement: ShadowGenericElement {
         }
     }
     
-    public func prop(forKey key: StateKey, is value: AnyObject) {
+    public func prop(forKey key: StateKey, is value: Any) {
         containingView.setProp(self, toValue: value, forKey: key)
     }
     
@@ -84,7 +84,7 @@ public class ShadowStateViewElement: ShadowGenericElement {
         containingView.setProp(self, toStateKey: stateKey, forKey: key)
     }
     
-    public func prop(forKey key: StateKey, isFunction function: ([String: AnyObject]->Void)) {
+    public func prop(forKey key: StateKey, isFunction function: ([String: Any]->Void)) {
         containingView.setProp(self, forKey: key, toFunction: function)
     }
     

@@ -32,7 +32,7 @@ When you create your first StateView, you will become familiar with **props**, *
 
 You can use **props** to pass values from one StateView to another, **state** to keep values in a StateView privately, and **render()** to describe how a StateView looks. StateView is simply a subclass of UIView that uses these three to update itself when your data changes.
 
-(Both **props** and **state** are dictionaries with type `[String: AnyObject]` to encourage you to keep and pass around anything that works for you.)
+(Both **props** and **state** allow values of type `Any` to encourage you to keep and pass around anything that works for you.)
 
 When you add your first subview to a StateView inside **render()**, you will become familiar with **place()**.
 

@@ -13,7 +13,7 @@ import SnapKit
 public class StateView: UIView {
     var shadow = ShadowView()
     public var props: [StateViewProp] = []
-    public var state: [String: AnyObject?] = [:] {
+    public var state: [String: Any?] = [:] {
         didSet {
             props.removeAll()
             renderDeep()
@@ -35,7 +35,7 @@ public class StateView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func getInitialState() -> [String: AnyObject?] {
+    public func getInitialState() -> [String: Any?] {
         return [:]
     }
     
@@ -79,7 +79,7 @@ public class StateView: UIView {
         return shadowElement
     }
 
-    func setProp(forView: ShadowStateViewElement, toValue value: AnyObject?, forKey key: StateKey) {
+    func setProp(forView: ShadowStateViewElement, toValue value: Any?, forKey key: StateKey) {
         props = props.filter { !(propsAreEqual($0.key, otherProp: key) && $0.viewKey == forView.key) }
         props.append(StateViewPropWithValue(viewKey: forView.key, key: key, value: value))
     }
@@ -89,12 +89,12 @@ public class StateView: UIView {
         props.append(StateViewPropWithStateLink(viewKey: forView.key, key: key, value: "unset", stateKey: stateKey))
     }
     
-    func setProp(forView: ShadowStateViewElement, forKey key: StateKey, toFunction function: (([String: AnyObject]->Void))) {
+    func setProp(forView: ShadowStateViewElement, forKey key: StateKey, toFunction function: (([String: Any]->Void))) {
         props = props.filter { !(propsAreEqual($0.key, otherProp: key) && $0.viewKey == forView.key) }
         props.append(StateViewPropWithFunction(viewKey: forView.key, key: key, function: function))
     }
     
-    public func prop(withValueForKey key: StateKey) -> AnyObject? {
+    public func prop(withValueForKey key: StateKey) -> Any? {
         let possibleProp = props.filter { prop in
             guard let _ = prop as? StateViewPropWithValue else {
                 return false
@@ -110,7 +110,7 @@ public class StateView: UIView {
         return prop.value
     }
     
-    public func prop(withFunctionForKey key: StateKey) -> (([String: AnyObject] ->Void))? {
+    public func prop(withFunctionForKey key: StateKey) -> (([String: Any] ->Void))? {
         let possibleProp = props.filter { prop in
             guard let _ = prop as? StateViewPropWithFunction else {
                 return false
