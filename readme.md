@@ -26,13 +26,15 @@ With StateView...
 - You are encouraged to keep state across different views in your view hierarchy. Managing this state is easier when you use StateView and don't have to think about when, where, or how to call to methods like init, addSubview, and removeFromSuperview on your subviews.
 - You don't need to re-architect your app to be a declarative, functional, event-streamed, sequence-based, event-catching app to enjoy the benefits of reactivity and a family of views that are all pure functions of their state.
 
+---
+
 ## What's it like?
 
 When you create your first StateView, you will become familiar with **props**, **state**, and **render()**.
 
 You can use **props** to pass values from one StateView to another, **state** to keep values in a StateView privately, and **render()** to describe how a StateView looks. StateView is simply a subclass of UIView that uses these three to update itself when your data changes.
 
-(Both **props** and **state** allow values of type `Any` to encourage you to keep and pass around anything that works for you.)
+> Both **props** and **state** allow values of type `Any` to encourage you to keep and pass around anything that works for you.
 
 When you add your first subview to a StateView inside **render()**, you will become familiar with **place()**.
 
