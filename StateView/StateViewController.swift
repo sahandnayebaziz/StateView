@@ -28,7 +28,7 @@ public class StateViewController: UIViewController {
             make.size.equalTo(self.view)
             make.center.equalTo(self.view)
         }
-        rootView.renderDeep()
+        rootView.setRootView()
     }
     
 }

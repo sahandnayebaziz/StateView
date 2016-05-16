@@ -39,7 +39,11 @@ public class StateView: UIView {
         return [:]
     }
     
-    public func renderDeep() {
+    public func setRootView() {
+        renderDeep()
+    }
+    
+    func renderDeep() {
         render()
         shadow.didPlaceAll(resolveProps(self.props))
     }
