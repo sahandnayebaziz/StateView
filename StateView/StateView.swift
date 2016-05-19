@@ -61,7 +61,7 @@ public class StateView: UIView {
                     let newProp = StateViewPropWithValue(viewKey: prop.viewKey, key: prop.key, value: valueInState)
                     propsToUse.append(newProp)
                 } else {
-                    NSLog("Warning: a prop was set to a state key without a matching key/value pair in the state. This prop was skipped.")
+                    NSLog("Warning: a prop was set to a state key that was nil or without a matching key/value pair in the state. This prop was skipped.")
                 }
                 
             } else {
