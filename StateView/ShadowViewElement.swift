@@ -66,6 +66,8 @@ public class ShadowStateViewElement: ShadowGenericElement {
     var type: StateView.Type
     var props: [StateViewProp]
     
+    var firstTimeReceivingProps = true
+    
     init(key: String, containingView: StateView, constraints: ((make: ConstraintMaker) -> Void), type: StateView.Type) {
         self.type = type
         self.props = []
@@ -89,10 +91,6 @@ public class ShadowStateViewElement: ShadowGenericElement {
     }
     
     func setProps(props: [StateViewProp]) {
-        self.didReceiveProps(props)
-    }
-    
-    func didReceiveProps(props: [StateViewProp]) {
         self.props = props
     }
 }

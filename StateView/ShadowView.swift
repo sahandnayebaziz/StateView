@@ -94,8 +94,30 @@ class ShadowView: UIView {
                 viewElement.setProps(propsToUse)
                 
                 if let viewHash = viewElement.viewHash, let viewForHash = renderedViews[viewHash], let stateView = viewForHash as? StateView {
+                    
+                    if (!viewElement.firstTimeReceivingProps) {
+                        stateView.viewWillUpdate(stateView.state, newProps: propsToUse)
+                    }
+                    
+                    
                     stateView.props = propsToUse
+                    
+                    if (viewElement.firstTimeReceivingProps) {
+                        stateView.viewDidInitialize()
+                    }
+                    
+                    
                     stateView.renderDeep()
+                    
+                    if (!viewElement.firstTimeReceivingProps) {
+                        stateView.viewDidUpdate()
+                    }
+                    
+                    
+                    if (viewElement.firstTimeReceivingProps) {
+                        viewElement.firstTimeReceivingProps = false
+                    }
+                    
                 } else {
                     fatalError("Any recycled viewElement must keep a viewHash for it's corresponding view")
                 }
