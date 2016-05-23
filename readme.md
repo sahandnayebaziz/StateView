@@ -26,7 +26,7 @@ With StateView...
 - You are encouraged to keep state across different views in your view hierarchy. Managing this state is easier when you use StateView and don't have to think about when, where, or how to call to methods like init, addSubview, and removeFromSuperview on your subviews.
 - You don't need to re-architect your app to be a declarative, functional, event-streamed, sequence-based, event-catching app to enjoy the benefits of reactivity and a family of views that are all pure functions of their state.
 
----
+
 
 ## What's it like?
 
@@ -105,7 +105,7 @@ When you create your first StateView, you will become familiar with the followin
 
 A [full documentation](https://github.com/sahandnayebaziz/StateView/wiki/Documentation) of StateView and a [getting started](https://github.com/sahandnayebaziz/StateView/wiki/Getting-started) guide is in the [wiki](https://github.com/sahandnayebaziz/StateView/wiki).
 
----
+
 
 ## Sample apps
 
@@ -113,7 +113,7 @@ A [full documentation](https://github.com/sahandnayebaziz/StateView/wiki/Documen
 
 [SwiftHub](https://github.com/sahandnayebaziz/StateView-Samples-SwiftHub) is an iOS app that displays Swift repositories from GitHub.
 
----
+
 
 ## How does it work?
 
@@ -125,7 +125,7 @@ Both **render()** and **place()** work closely with a StateView’s ShadowView t
 
 When **state** changes in one of your views, a ShadowView orchestrates the calculation of the diff, the adding and removing of any needed or not needed subviews, and the passing of **props** from StateViews to their contained StateViews.
 
----
+
 
 ## Installation
 
@@ -133,7 +133,7 @@ You can install StateView from CocoaPods.
 
 `pod 'StateView'`
 
----
+
 
 ## What's next?
 
@@ -143,16 +143,16 @@ Any help towards making the methods, parameters, and patterns contained inside f
 
 If you’d like to contribute, take a look at the list of known issues in the wiki or start a new conversation in this project's issues!
 
----
+
 
 ## Credits
 
 StateView was written by Sahand Nayebaziz. StateView was inspired by [React](https://facebook.github.io/react/) and the DOM.
 
----
+
 
 ## License
 
 StateView is released under the MIT license. See LICENSE for details.
 
----
+
