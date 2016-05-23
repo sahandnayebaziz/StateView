@@ -105,9 +105,15 @@ When you create your first StateView, you will become familiar with the followin
 
 A [full documentation](https://github.com/sahandnayebaziz/StateView/wiki/Documentation) of StateView and a [getting started](https://github.com/sahandnayebaziz/StateView/wiki/Getting-started) guide is in the [wiki](https://github.com/sahandnayebaziz/StateView/wiki).
 
+---
+
 ## Sample apps
 
 [Frame](https://github.com/sahandnayebaziz/StateView-Samples-Frame) is the first app made with StateView. With StateView, Frame ended up being just four classes, three of which are well under one hundred lines.
+
+[SwiftHub](https://github.com/sahandnayebaziz/StateView-Samples-SwiftHub) is an iOS app that displays Swift repositories from GitHub.
+
+---
 
 ## How does it work?
 
@@ -119,11 +125,15 @@ Both **render()** and **place()** work closely with a StateView’s ShadowView t
 
 When **state** changes in one of your views, a ShadowView orchestrates the calculation of the diff, the adding and removing of any needed or not needed subviews, and the passing of **props** from StateViews to their contained StateViews.
 
+---
+
 ## Installation
 
 You can install StateView from CocoaPods.
 
 `pod 'StateView'`
+
+---
 
 ## What's next?
 
@@ -133,10 +143,16 @@ Any help towards making the methods, parameters, and patterns contained inside f
 
 If you’d like to contribute, take a look at the list of known issues in the wiki or start a new conversation in this project's issues!
 
+---
+
 ## Credits
 
 StateView was written by Sahand Nayebaziz. StateView was inspired by [React](https://facebook.github.io/react/) and the DOM.
 
+---
+
 ## License
 
 StateView is released under the MIT license. See LICENSE for details.
+
+---
