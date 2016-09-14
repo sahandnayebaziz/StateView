@@ -10,11 +10,11 @@ import UIKit
 import SnapKit
 
 // similar to component
-public class StateView: UIView {
+open class StateView: UIView {
     let shadow = ShadowView()
     var props: [StateViewProp] = []
     var propsForChildren: [StateViewProp] = []
-    public var state: [String: Any?] = [:] {
+    open var state: [String: Any?] = [:] {
         willSet { viewWillUpdate(newValue, newProps: props) }
         didSet {
             propsForChildren.removeAll()
@@ -24,13 +24,13 @@ public class StateView: UIView {
         }
     }
     
-    public var parentViewController: UIViewController
+    open var parentViewController: UIViewController
     
     public required init(parentViewController: UIViewController) {
         self.parentViewController = parentViewController
         shadow.parentViewController = parentViewController
         
-        super.init(frame: CGRectZero)
+        super.init(frame: CGRect.zero)
         shadow.paintView = self
         self.state = getInitialState()
     }
@@ -39,11 +39,11 @@ public class StateView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func getInitialState() -> [String: Any?] {
+    open func getInitialState() -> [String: Any?] {
         return [:]
     }
     
-    public func setRootView() {
+    open func setRootView() {
         renderDeep()
         viewDidInitialize()
     }
@@ -53,13 +53,13 @@ public class StateView: UIView {
         shadow.didPlaceAll(resolveProps(self.propsForChildren))
     }
     
-    public func render() {}
+    open func render() {}
     
-    public func viewDidInitialize() {}
-    public func viewWillUpdate(newState: [String: Any?], newProps: [StateViewProp]) {}
-    public func viewDidUpdate() {}
+    open func viewDidInitialize() {}
+    open func viewWillUpdate(_ newState: [String: Any?], newProps: [StateViewProp]) {}
+    open func viewDidUpdate() {}
     
-    private func resolveProps(props: [StateViewProp]) -> [StateViewProp] {
+    fileprivate func resolveProps(_ props: [StateViewProp]) -> [StateViewProp] {
         var propsToUse: [StateViewProp] = []
 
         for prop in props {
@@ -76,34 +76,34 @@ public class StateView: UIView {
         return propsToUse
     }
     
-    public func place(type: StateView.Type, key: String, constraints: ((make: ConstraintMaker) -> Void)) -> ShadowStateViewElement {
+    open func place(_ type: StateView.Type, key: String, constraints: @escaping ((_ make: ConstraintMaker) -> Void)) -> ShadowStateViewElement {
         let shadowElement = ShadowStateViewElement(key: key, containingView: self, constraints: constraints, type: type)
         shadow.place(shadowElement)
         return shadowElement
     }
     
-    public func place(view: UIView, key: String, constraints: ((make: ConstraintMaker) -> Void)) -> ShadowViewElement {
+    open func place(_ view: UIView, key: String, constraints: @escaping ((_ make: ConstraintMaker) -> Void)) -> ShadowViewElement {
         let shadowElement = ShadowViewElement(key: key, containingView: self, constraints: constraints, view: view)
         shadow.place(shadowElement)
         return shadowElement
     }
 
-    func setProp(forView: ShadowStateViewElement, toValue value: Any?, forKey key: StateKey) {
+    func setProp(_ forView: ShadowStateViewElement, toValue value: Any?, forKey key: StateKey) {
         propsForChildren = propsForChildren.filter { !(propsAreEqual($0.key, otherProp: key) && $0.viewKey == forView.key) }
         propsForChildren.append(StateViewPropWithValue(viewKey: forView.key, key: key, value: value))
     }
     
-    func setProp(forView: ShadowStateViewElement, toStateKey stateKey: String, forKey key: StateKey) {
+    func setProp(_ forView: ShadowStateViewElement, toStateKey stateKey: String, forKey key: StateKey) {
         propsForChildren = propsForChildren.filter { !(propsAreEqual($0.key, otherProp: key) && $0.viewKey == forView.key) }
         propsForChildren.append(StateViewPropWithStateLink(viewKey: forView.key, key: key, value: "unset", stateKey: stateKey))
     }
     
-    func setProp(forView: ShadowStateViewElement, forKey key: StateKey, toFunction function: (([String: Any]->Void))) {
+    func setProp(_ forView: ShadowStateViewElement, forKey key: StateKey, toFunction function: @escaping ((([String: Any])->Void))) {
         propsForChildren = propsForChildren.filter { !(propsAreEqual($0.key, otherProp: key) && $0.viewKey == forView.key) }
         propsForChildren.append(StateViewPropWithFunction(viewKey: forView.key, key: key, function: function))
     }
     
-    public func prop(withValueForKey key: StateKey) -> Any? {
+    open func prop(withValueForKey key: StateKey) -> Any? {
         let possibleProp = props.filter { prop in
             guard let _ = prop as? StateViewPropWithValue else {
                 return false
@@ -119,7 +119,7 @@ public class StateView: UIView {
         return prop.value
     }
     
-    public func prop(withFunctionForKey key: StateKey) -> (([String: Any] ->Void))? {
+    open func prop(withFunctionForKey key: StateKey) -> ((([String: Any]) ->Void))? {
         let possibleProp = props.filter { prop in
             guard let _ = prop as? StateViewPropWithFunction else {
                 return false
@@ -138,7 +138,7 @@ public class StateView: UIView {
 }
 
 // This extension makes prop(withValueForKey) and prop(withFunctionForKey) available on the newProps array that is passed into viewWillUpdate.
-extension _ArrayType where Generator.Element == StateViewProp {
+extension Sequence where Iterator.Element == StateViewProp {
     
     public func prop(withValueForKey key: StateKey) -> Any? {
         let possibleProp = self.filter { prop in
@@ -156,7 +156,7 @@ extension _ArrayType where Generator.Element == StateViewProp {
         return prop.value
     }
     
-    public func prop(withFunctionForKey key: StateKey) -> (([String: Any] ->Void))? {
+    public func prop(withFunctionForKey key: StateKey) -> ((([String: Any]) ->Void))? {
         let possibleProp = self.filter { prop in
             guard let _ = prop as? StateViewPropWithFunction else {
                 return false

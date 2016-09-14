@@ -13,21 +13,21 @@ protocol ShadowElement: Equatable {
     var key: String { get set }
     var viewHash: String? { get set }
     var containingView: StateView { get set }
-    var constraints: ((make: ConstraintMaker) -> Void) { get set }
+    var constraints: ((_ make: ConstraintMaker) -> Void) { get set }
     
     var getInitializedViewWithParentViewController: ((UIViewController) -> UIView) { get set }
 }
 
 // a generic class used to Super-connect ShadowViewElement and ShadowStateViewElement
-public class ShadowGenericElement: ShadowElement {
+open class ShadowGenericElement: ShadowElement {
     var key: String
     var viewHash: String?
     var containingView: StateView
-    var constraints: ((make: ConstraintMaker) -> Void)
+    var constraints: ((_ make: ConstraintMaker) -> Void)
     
     var getInitializedViewWithParentViewController: ((UIViewController) -> UIView)
     
-    init(key: String, containingView: StateView, constraints: ((make: ConstraintMaker) -> Void)) {
+    init(key: String, containingView: StateView, constraints: @escaping ((_ make: ConstraintMaker) -> Void)) {
         self.key = key
         self.viewHash = nil
         self.containingView = containingView
@@ -49,10 +49,10 @@ public func ==(lhs: ShadowGenericElement, rhs: ShadowGenericElement) -> Bool {
     }
 }
 
-public class ShadowViewElement: ShadowGenericElement {
+open class ShadowViewElement: ShadowGenericElement {
     var view: UIView
     
-    init(key: String, containingView: StateView, constraints: ((make: ConstraintMaker) -> Void), view: UIView) {
+    init(key: String, containingView: StateView, constraints: @escaping ((_ make: ConstraintMaker) -> Void), view: UIView) {
         self.view = view
         
         super.init(key: key, containingView: containingView, constraints: constraints)
@@ -62,13 +62,13 @@ public class ShadowViewElement: ShadowGenericElement {
     }
 }
 
-public class ShadowStateViewElement: ShadowGenericElement {
+open class ShadowStateViewElement: ShadowGenericElement {
     var type: StateView.Type
     var props: [StateViewProp]
     
     var firstTimeReceivingProps = true
     
-    init(key: String, containingView: StateView, constraints: ((make: ConstraintMaker) -> Void), type: StateView.Type) {
+    init(key: String, containingView: StateView, constraints: @escaping ((_ make: ConstraintMaker) -> Void), type: StateView.Type) {
         self.type = type
         self.props = []
         
@@ -78,19 +78,19 @@ public class ShadowStateViewElement: ShadowGenericElement {
         }
     }
     
-    public func prop(forKey key: StateKey, is value: Any) {
+    open func prop(forKey key: StateKey, is value: Any) {
         containingView.setProp(self, toValue: value, forKey: key)
     }
     
-    public func prop(forKey key: StateKey, isLinkedToKeyInState stateKey: String) {
+    open func prop(forKey key: StateKey, isLinkedToKeyInState stateKey: String) {
         containingView.setProp(self, toStateKey: stateKey, forKey: key)
     }
     
-    public func prop(forKey key: StateKey, isFunction function: ([String: Any]->Void)) {
+    open func prop(forKey key: StateKey, isFunction function: @escaping (([String: Any])->Void)) {
         containingView.setProp(self, forKey: key, toFunction: function)
     }
     
-    func setProps(props: [StateViewProp]) {
+    func setProps(_ props: [StateViewProp]) {
         self.props = props
     }
 }

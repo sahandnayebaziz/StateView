@@ -19,18 +19,18 @@ class ShadowView: UIView {
     
     var parentViewController: UIViewController? = nil
 
-    func place(element: ShadowGenericElement) {
+    func place(_ element: ShadowGenericElement) {
         newViews.append(element)
     }
     
-    func didPlaceAll(props: [StateViewProp]) {
+    func didPlaceAll(_ props: [StateViewProp]) {
         let diff = views.diff(newViews)
         if !diff.results.isEmpty {
             
             for deletion in diff.deletions {
                 if let viewHash = deletion.value.viewHash, let view = renderedViews[viewHash] {
                     view.removeFromSuperview()
-                    renderedViews.removeValueForKey(viewHash)
+                    renderedViews.removeValue(forKey: viewHash)
                 }
             }
             
@@ -43,12 +43,12 @@ class ShadowView: UIView {
                 
                 let initializedView = viewElement.getInitializedViewWithParentViewController(parentViewController)
                 
-                let hash = NSUUID().UUIDString
+                let hash = UUID().uuidString
                 viewElement.viewHash = hash
                 renderedViews[hash] = initializedView
                 
                 paintView.addSubview(initializedView)
-                initializedView.snp_makeConstraints(closure: viewElement.constraints)
+                initializedView.snp.makeConstraints(viewElement.constraints)
             }
             
             // update view records
@@ -73,7 +73,7 @@ class ShadowView: UIView {
                         fatalError("All views in shadow.views given a viewHash must have an item in shadow.renderedViews.")
                     }
                     
-                    view.snp_remakeConstraints(closure: newPlacement.constraints)
+                    view.snp.remakeConstraints(newPlacement.constraints)
                 } else {
                     fatalError("All immediate children of a StateView must be given unique keys.")
                 }
@@ -84,10 +84,10 @@ class ShadowView: UIView {
         renderViewsWithProps(props)
         
         // flush new views
-        newViews.removeAll(keepCapacity: true)
+        newViews.removeAll(keepingCapacity: true)
     }
 
-    private func renderViewsWithProps(props: [StateViewProp]) {
+    fileprivate func renderViewsWithProps(_ props: [StateViewProp]) {
         for viewElement in views {
             if let viewElement = viewElement as? ShadowStateViewElement {
                 let propsToUse = props.filter { $0.viewKey == viewElement.key }
