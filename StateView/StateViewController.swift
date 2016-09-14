@@ -8,13 +8,13 @@
 
 import UIKit
 
-public class StateViewController: UIViewController {
+open class StateViewController: UIViewController {
     
-    public var rootView: StateView? = nil {
+    open var rootView: StateView? = nil {
         didSet {
             if let rootView = rootView {
                 view.addSubview(rootView)
-                rootView.snp_makeConstraints { make in
+                rootView.snp.makeConstraints { make in
                     make.size.equalTo(self.view)
                     make.center.equalTo(self.view)
                 }

@@ -21,7 +21,7 @@ struct StateViewPropWithValue: StateViewProp, Equatable {
 }
 
 func ==(lhs: StateViewPropWithValue, rhs: StateViewPropWithValue) -> Bool {
-    return lhs.viewKey == rhs.viewKey && propsAreEqual(lhs.key, otherProp: rhs.key) && lhs.value.dynamicType == rhs.value.dynamicType
+    return lhs.viewKey == rhs.viewKey && propsAreEqual(lhs.key, otherProp: rhs.key) && type(of: lhs.value) == type(of: rhs.value)
 }
 
 struct StateViewPropWithStateLink: StateViewProp, Equatable {
@@ -38,7 +38,7 @@ func ==(lhs: StateViewPropWithStateLink, rhs: StateViewPropWithStateLink) -> Boo
 struct StateViewPropWithFunction: StateViewProp, Equatable {
     var viewKey: String
     var key: StateKey
-    var function: ([String: Any] -> Void)
+    var function: (([String: Any]) -> Void)
 }
 
 func ==(lhs: StateViewPropWithFunction, rhs: StateViewPropWithFunction) -> Bool {

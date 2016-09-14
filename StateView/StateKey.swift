@@ -12,6 +12,6 @@ public protocol StateKey {
     var hashValue: Int { get }
 }
 
-func propsAreEqual(prop: StateKey, otherProp: StateKey) -> Bool {
-    return prop.dynamicType == otherProp.dynamicType && prop.hashValue == otherProp.hashValue
+func propsAreEqual(_ prop: StateKey, otherProp: StateKey) -> Bool {
+    return type(of: prop) == type(of: otherProp) && prop.hashValue == otherProp.hashValue
 }
