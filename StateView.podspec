@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "StateView"
-  s.version          = "1.3"
+  s.version          = "2.0"
   s.summary          = "Automatically-updating views you can actually understand."
   s.description      = "Define once what your users should see when the data is one way or another and let StateView handle the rest. StateView will update only the parts of your UI that need updating whenever data changes, and you don't even need to refactor your app into a set of event streams. Write normal code and watch your view update itself."
 
