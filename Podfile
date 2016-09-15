@@ -3,6 +3,6 @@ use_frameworks!
 
 target 'StateView' do
 
-pod 'SnapKit'
+pod 'SnapKit', '~> 3.0.0'
 
 end
