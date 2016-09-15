@@ -129,9 +129,13 @@ When **state** changes in one of your views, a ShadowView orchestrates the calcu
 
 ## Installation
 
-You can install StateView from CocoaPods.
+You can install StateView from CocoaPods. The latest release of StateView supports Swift 3.
 
 `pod 'StateView'`
+
+For Swift 2, use the last tag of StateView before StateView 2.
+
+`pod 'StateView', '~> 1.3'`
 
 
 
