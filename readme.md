@@ -109,7 +109,7 @@ A [full documentation](https://github.com/sahandnayebaziz/StateView/wiki/Documen
 
 ## Sample apps
 
-[Frame](https://github.com/sahandnayebaziz/StateView-Samples-Frame) is the first app made with StateView. With StateView, Frame ended up being just four classes, three of which are well under one hundred lines.
+[Frame](https://itunes.apple.com/us/app/frame-frame-images-on-a-canvas/id1158682315?mt=8) is on the App Store and was made with StateView. With StateView, Frame ended up being just four classes, three of which are well under one hundred lines.
 
 [SwiftHub](https://github.com/sahandnayebaziz/StateView-Samples-SwiftHub) is an iOS app that displays Swift repositories from GitHub.
 
