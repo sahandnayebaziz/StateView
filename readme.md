@@ -1,4 +1,4 @@
-![Views last updated: just now.](https://www.dropbox.com/s/cjqcrxnq060ax74/stateview%20header.png?dl=1)
+![Views last updated: just now.](header.png)
 
 StateView is a UIView substitute that automatically updates itself when data changes.
 
